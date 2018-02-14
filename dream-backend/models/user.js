@@ -49,7 +49,7 @@ var userSchema = new Schema({
     emergencyContact: {
         name: {type: String, trim: true},
         relationship: {type: String, trim: true},
-        phoneNumber: {type: String, trim: true},
+        phoneNumber: {type: String, trim: true}
     }
 
     // medical information
