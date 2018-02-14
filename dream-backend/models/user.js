@@ -17,7 +17,7 @@ var userSchema = new Schema({
         age: Number,
         location: String,
         hobby: [{type: String}],
-    }
+    },
     created_at: Date,
     updated_at: Date
 });
