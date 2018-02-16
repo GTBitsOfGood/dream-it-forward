@@ -51,7 +51,7 @@ export class MenteeApplication extends Component {
                 <h1>Participant Registration Information </h1>
                 <small>Enrolling Student Dreamer (Participant) Info. Please only complete this form when you are ready to enroll. All others please contact us directly with any questions you have before enrollment. </small>
                 <div className="form-group">
-                  <input className="form-control first" type="text" placeholder="* Email Address" onChange={}/>
+                  <input value={this.state.email} onChange={(e) => {this.setState({email: e.target.value})}} className="form-control first" type="text" placeholder="* Email Address"/>
                 </div>
                 <div className="form-group">
                   <label className="control-label">Which Program Are You Registering</label>
@@ -63,16 +63,16 @@ export class MenteeApplication extends Component {
                   </div>
                 </div>
                 <div className="form-group">
-                  <input className="form-control" type="text" placeholder="Dreamer's Name"/>
+                  <input value={this.state.name} onChange={(e) => {this.setState({name: e.target.value})}}className="form-control" type="text" placeholder="Dreamer's Name"/>
                 </div>
                 <div className="form-group">
-                  <input className="form-control" type="text" placeholder="Address (Include City, State, and Zip)"/>
+                  <input value={this.state.address} onChange={(e) => {this.setState({address: e.target.value})}} className="form-control" type="text" placeholder="Address (Include City, State, and Zip)"/>
                 </div>
                 <div className="form-group">
                   <label className="control-label">Date of Birth</label><input className="form-control" type="date"/>
                 </div>
                 <div className="form-group">
-                  <input className="form-control" type="text" placeholder="Age" inputmode="numeric"/>
+                  <input value={this.state.age} onChange={(e) => {this.setState({age: e.target.value})}} className="form-control" type="text" placeholder="Age" inputmode="numeric"/>
                 </div>
                 <div className="form-group">
                   <label className="control-label">School Attending &amp; City. Use home city for students home-schooled or attending school online. Please put none if the participant is not currently enrolled. </label><input className="form-control" type="text" required=""/>
@@ -99,20 +99,21 @@ export class MenteeApplication extends Component {
                   <div className="radio">
                     <label className="control-label"><input type="radio"/>Label</label>
                   </div>
-                  <input className="form-control" type="text"/>
+                  <input value={this.state.additionalDreamers} onChange={(e) => {this.setState({additionalDreamers: e.target.value})}} className="form-control" type="text"/>
                 </div>
                 <div className="form-group">
-                  <label className="control-label">How many children do you have? (For Dream Women's Only) club </label><input className="form-control" type="text" required=""/>
+                  <label className="control-label">How many children do you have? (For Dream Women's Only) club </label>
+                  <input value={this.state.numChildren} onChange={(e) => {this.setState({numChildren: e.target.value})}} className="form-control" type="text" required=""/>
                 </div>
                 <h1>Parent/Guardian Information</h1>
                 <small>If you the participant is 18 or older, enter your information here</small>
                   <div className="form-group first">
-                    <input className="form-control" type="text" placeholder="Name"/>
+                    <input value={this.state.parentName} onChange={(e) => {this.setState({parentName: e.target.value})}} className="form-control" type="text" placeholder="Name"/>
                   </div>
                   <div className="form-group">
-                    <input className="form-control" type="text" placeholder="Relationship to Dreamer"/></div>
+                    <input value={this.state.parentRelation} onChange={(e) => {this.setState({parentRelation: e.target.value})}} className="form-control" type="text" placeholder="Relationship to Dreamer"/></div>
                   <div className="form-group">
-                    <input className="form-control" type="text" placeholder="Phone Number " inputmode="numeric"/>
+                    <input value={this.state.parentPhone} onChange={(e) => {this.setState({email: e.target.value})}} className="form-control" type="text" placeholder="Phone Number " inputmode="numeric"/>
                   </div>
                   <div className="form-group">
                     <input className="form-control" type="text" placeholder="Email (If different from Dreamer)"/>
