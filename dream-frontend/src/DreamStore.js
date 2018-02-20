@@ -13,7 +13,7 @@ class Facility {
 export class DreamStore {
   @observable email = ''
   @observable password = ''
-  
+  @observable passConfirm = ''
 }
 
 export default new DreamStore()
