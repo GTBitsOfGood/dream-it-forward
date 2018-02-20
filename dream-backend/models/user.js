@@ -43,14 +43,14 @@ var userSchema = new Schema({
         location: {type: String, trim: true},
         hobby: [{type: String, trim: true}],
         sports: [{type: String, trim: true}]
-    }
+    },
 
     // emergency contact information
     emergencyContact: {
         name: {type: String, trim: true},
         relationship: {type: String, trim: true},
         phoneNumber: {type: String, trim: true}
-    }
+    },
 
     // medical information
     medialInfo: {
@@ -58,7 +58,7 @@ var userSchema = new Schema({
       doctorPhone: {type: String, trim: true},
       doctorAddress: String,
       allergy: [{type: String, trim: true}]
-    }
+    },
 
     // parent information
     // only applicable if user under 18
@@ -77,7 +77,7 @@ var userSchema = new Schema({
         },
         personAuthorized: String,  // person authorized to pick children
         phoneAuthorized: String    // phone number of that authorized person
-    }
+    },
     created_at: Date,
     updated_at: Date
 });
