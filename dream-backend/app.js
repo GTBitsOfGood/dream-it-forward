@@ -9,9 +9,9 @@ const mongoose = require('mongoose');
 var api = require('./routes/api');
 
 var app = express();
-mongoose.connect('mongodb://dreamer:bitsofgood@ds235708.mlab.com:35708/dreamitforward');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
+// mongoose.connect('');
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
