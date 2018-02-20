@@ -2,8 +2,6 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-//Local Imports
-var userdata = require('./routes/userdata');
 var api = require('./routes/api');
 require('dotenv').config(); // load env vars
 
@@ -27,7 +25,6 @@ mongoose.connection.on('error', (err) => {
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/userdata', userdata);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
