@@ -6,13 +6,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
-var userdata = require('./routes/userdata');
 var api = require('./routes/api');
 
 var app = express();
-// mongoose.connect('');
-// var db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
+mongoose.connect('mongodb://dreamer:bitsofgood@ds235708.mlab.com:35708/dreamitforward');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -26,7 +25,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/userdata', userdata);
 app.use('/api', api);
 
 // catch 404 and forward to error handler
