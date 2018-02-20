@@ -4,6 +4,8 @@ const User = require('../models/user.js');
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 
+const register = require('../routes/register.js');
+
 const saltRounds = 10;
 
 router.post('/login', function (req, res, next) {
@@ -25,5 +27,7 @@ router.post('/login', function (req, res, next) {
         }
     });
 });
+
+router.use('/register', register);
 
 module.exports = router;
