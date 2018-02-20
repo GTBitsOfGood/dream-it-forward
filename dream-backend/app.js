@@ -13,6 +13,8 @@ var app = express();
 // var db = mongoose.connection;
 // db.on('error', console.error.bind(console, 'connection error:'));
 mongoose.connect(process.env.MONGODB_URI);
+mongoose.Promise = global.Promise;
+
 mongoose.connection.on('connected', () => {
   console.log("Connection open");
 });
