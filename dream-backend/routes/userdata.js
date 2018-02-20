@@ -3,7 +3,7 @@ var router = express.Router();
 const User = require('../models/user.js');
 
 /* GET userdata */
-router.get('/userdata', function (req, res, next) {
+router.get('/', function (req, res, next) {
     if (!req.body || !req.body.username) {
         return res.status(400).json({ status: 'Unable to find parameters' });
     }

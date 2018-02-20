@@ -1,18 +1,20 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const mongoose = require('mongoose');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var register = require('./routes/register');
+var userdata = require('./routes/userdata');
+var api = require('./routes/api');
 
 var app = express();
+// mongoose.connect('');
+// var db = mongoose.connection;
+// db.on('error', console.error.bind(console, 'connection error:'));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/', index);
-app.use('/users', users);
-app.use('/register', register);
+app.use('/userdata', userdata);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
