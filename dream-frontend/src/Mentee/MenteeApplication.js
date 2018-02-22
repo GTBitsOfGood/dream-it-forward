@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
-import './MenteeApplication.css'
+import './Application.css'
 
 export class MenteeApplication extends Component {
 
@@ -23,7 +23,7 @@ export class MenteeApplication extends Component {
 
     render() {
         return (
-            <div className="mentee-application">
+            <div className="application">
                 <div className="container">
                     <div className="well">
                         <form>
