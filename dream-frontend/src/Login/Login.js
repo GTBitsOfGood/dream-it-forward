@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Login.css';
 import { observer } from 'mobx-react'
 
 @observer
-export class Login extends React.Component {
+export class Login extends Component {
     constructor(props) {
         super(props);
         this.updateProperty = this.updateProperty.bind(this)
