@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
 import './MenteeApplication.css'
+import { observer } from 'mobx-react'
 
+@observer
 export class MenteeApplication extends Component {
 
     constructor(props) {

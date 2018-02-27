@@ -8,7 +8,7 @@ const User = require('../models/user.js');
 const saltRounds = 10;
 
 router.post('/', (req, res) => {
-    if (!req.body || !req.body.username || !req.body.password || !req.body.email) {
+    if (!req.body || !req.body.username || !req.body.password) {
         return res.status(400).json({status: 'invalid body'});
     }
     
@@ -21,7 +21,7 @@ router.post('/', (req, res) => {
             username: req.body.username,
             password: hash,
             meta : {
-                email: req.body.email
+                email: req.body.username
             }
         });
 
