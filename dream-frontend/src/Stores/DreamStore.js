@@ -4,6 +4,7 @@ export class DreamStore {
   @observable email = ''
   @observable password = ''
   @observable passConfirm = ''
+  @observable token = localStorage.getItem('token')
   @observable mentee_app = null
 }
 

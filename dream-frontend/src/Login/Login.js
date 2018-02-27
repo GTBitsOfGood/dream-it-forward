@@ -23,9 +23,12 @@ export class Login extends Component {
     async onSubmit(e) {
         e.preventDefault()
         if (this.props.store.email && this.props.store.password) {
-            console.log(this.props.store.email)
-            console.log(this.props.store.password)
-            console.log(await api.login(this.props.store.email, this.props.store.password))
+            const data = await api.login(this.props.store.email, this.props.store.password)
+            if (data.token) {
+                this.props.store.token = data.token;
+                localStorage.setItem('token', data.token);
+            }
+            else window.toastr.error('Login failed')
         }
     }
 
