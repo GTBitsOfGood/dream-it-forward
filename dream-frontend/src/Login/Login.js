@@ -26,6 +26,8 @@ export class Login extends Component {
         if (this.props.store.email && this.props.store.password) {
             const data = await api.login(this.props.store.email, this.props.store.password)
             if (data.token) {
+                this.props.store.email = '';
+                this.props.store.password = '';
                 this.props.store.token = data.token;
                 localStorage.setItem('token', data.token);
             }

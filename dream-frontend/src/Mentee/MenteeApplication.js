@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Route, NavLink, HashRouter } from 'react-router-dom';
 import './MenteeApplication.css'
+import { Redirect } from 'react-router-dom';
+import * as api from '../Utils/api'
 import { observer } from 'mobx-react'
 
 @observer
@@ -15,6 +17,19 @@ export class MenteeApplication extends Component {
         }
     }
 
+    async componentDidMount() {
+        const data = await api.verifyToken(this.props.store.token)
+        if (!data || data.status !== 'valid') {
+            this.props.store.token = ''
+        }
+    }
+
+    onLogout() {
+        console.log("Fdsf")
+        localStorage.removeItem('token')
+        this.props.store.token = ''
+    }
+
     updateProperty(key, value) {
         this.props.store[key] = value
     }
@@ -24,9 +39,14 @@ export class MenteeApplication extends Component {
     }
 
     render() {
+        const { store } = this.props
+        if (!store.token) {
+            return <Redirect to='/' />
+        }
         return (
             <div className="mentee-application">
                 <div className="container">
+                <button onClick={() => this.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn-warning" type="button">Logout</button>
                     <div className="well">
                         <form>
                             <h1>Participant Registration Information </h1>
@@ -53,7 +73,7 @@ export class MenteeApplication extends Component {
                                 <label className="control-label">Date of Birth</label><input className="form-control" type="date" />
                             </div>
                             <div className="form-group">
-                                <input value={this.state.age} onChange={(e) => { this.setState({ age: e.target.value }) }} className="form-control" type="text" placeholder="Age" inputmode="numeric" />
+                                <input value={this.state.age} onChange={(e) => { this.setState({ age: e.target.value }) }} className="form-control" type="text" placeholder="Age" inputMode="numeric" />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">School Attending &amp; City. Use home city for students home-schooled or attending school online. Please put none if the participant is not currently enrolled. </label><input className="form-control" type="text" required="" />
@@ -94,7 +114,7 @@ export class MenteeApplication extends Component {
                             <div className="form-group">
                                 <input value={this.state.parentRelation} onChange={(e) => { this.setState({ parentRelation: e.target.value }) }} className="form-control" type="text" placeholder="Relationship to Dreamer" /></div>
                             <div className="form-group">
-                                <input value={this.state.parentPhone} onChange={(e) => { this.setState({ email: e.target.value }) }} className="form-control" type="text" placeholder="Phone Number " inputmode="numeric" />
+                                <input value={this.state.parentPhone} onChange={(e) => { this.setState({ email: e.target.value }) }} className="form-control" type="text" placeholder="Phone Number " inputMode="numeric" />
                             </div>
                             <div className="form-group">
                                 <input className="form-control" type="text" placeholder="Email (If different from Dreamer)" />
@@ -125,7 +145,7 @@ export class MenteeApplication extends Component {
                                 <input className="form-control" type="text" required="" placeholder="* Doctor's Phone" />
                             </div>
                             <div className="form-group">
-                                <input className="form-control" type="text" placeholder="* Doctor's Address" inputmode="numeric" />
+                                <input className="form-control" type="text" placeholder="* Doctor's Address" inputMode="numeric" />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">* Does the Dreamer have any allergies, chronic illness, or medical conditions either physical, behavioral, mental? If yes, please describe.</label>

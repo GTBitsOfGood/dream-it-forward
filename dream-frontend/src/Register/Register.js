@@ -33,6 +33,9 @@ export class Register extends React.Component {
             } else {
                 const data = await api.register(store.email, store.password);
                 if (data.status === 'success') {
+                    this.props.store.email = '';
+                    this.props.store.password = '';
+                    window.toastr.success('Account created')
                     this.props.history.push('/')
                 } else {
                     window.toastr.error('Cannot create account')

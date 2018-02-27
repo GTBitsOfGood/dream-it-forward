@@ -25,3 +25,16 @@ export async function register(email, password) {
     const data = await res.json();
     return data;
 }
+
+export async function verifyToken(token) {
+    const res = await fetch(BASE + '/api/token/verify', {
+        method: 'PUT',
+        body: JSON.stringify({ token: token }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    });
+    const data = await res.json();
+    return data;
+}
