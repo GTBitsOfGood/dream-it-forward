@@ -36,7 +36,7 @@ export class Login extends Component {
     render() {
         const { store } = this.props
         if (store.token) {
-            return <Redirect to='/mentee' />
+            return <Redirect to='/mentee-app' />
         }
         return (
             <div className="login-clean">

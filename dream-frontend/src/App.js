@@ -13,7 +13,7 @@ class App extends Component {
         <div>
           <Route exact path="/" render={({history}) => <Login store={DreamStore} history={history} {...this.props} />} />
           <Route exact path="/register" render={({history}) => <Register store={DreamStore} history={history} {...this.props} />} />
-          <Route exact path="/mentee" render={({history}) => <MenteeApplication store={DreamStore} history={history} {...this.props} />} />
+          <Route exact path="/mentee-app" render={({history}) => <MenteeApplication store={DreamStore} history={history} {...this.props} />} />
         </div>
       </Router>
     );

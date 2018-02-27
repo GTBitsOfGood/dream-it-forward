@@ -10,6 +10,9 @@ export class MenteeApplication extends Component {
         super(props);
         this.updateProperty = this.updateProperty.bind(this)
         this.onChange = this.onChange.bind(this)
+        this.state = {
+            
+        }
     }
 
     updateProperty(key, value) {

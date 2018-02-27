@@ -34,6 +34,8 @@ export class Register extends React.Component {
                 const data = await api.register(store.email, store.password);
                 if (data.status === 'success') {
                     this.props.history.push('/')
+                } else {
+                    window.toastr.error('Cannot create account')
                 }
             }
         }
@@ -42,7 +44,7 @@ export class Register extends React.Component {
     render() {
         const {store} = this.props
         if (store.token) {
-            return <Redirect to='/mentee' />
+            return <Redirect to='/mentee-app' />
         }
         return (
             <div className="login-clean">
