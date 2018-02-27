@@ -1,5 +1,7 @@
 import React from 'react';
 import '../Login/Login.css'
+import * as api from '../Utils/api'
+import { Redirect } from 'react-router-dom';
 import { observer } from 'mobx-react';
 
 @observer
@@ -19,25 +21,29 @@ export class Register extends React.Component {
         this.updateProperty(event.target.name, event.target.value)
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault();
         const {store} = this.props
         if (!store.email || !store.password || !store.passConfirm) {
           window.toastr.error('Please fill all fields')
         }
-
         if (store.email && store.passConfirm && store.password) {
             if (store.passConfirm !== store.password) {
                 window.toastr.error('Passwords don\'t match')
             } else {
-                console.log("SUCCESS")
-                // do backend
+                const data = await api.register(store.email, store.password);
+                if (data.status === 'success') {
+                    this.props.history.push('/')
+                }
             }
         }
     }
 
     render() {
         const {store} = this.props
+        if (store.token) {
+            return <Redirect to='/mentee' />
+        }
         return (
             <div className="login-clean">
                 <form>

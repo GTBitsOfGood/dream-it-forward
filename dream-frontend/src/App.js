@@ -11,9 +11,9 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Route exact path="/" render={() => <Login store={DreamStore} />} />
-          <Route exact path="/register" render={() => <Register store={DreamStore} />} />
-          <Route exact path="/mentee" render={() => <MenteeApplication store={DreamStore} />} />
+          <Route exact path="/" render={({history}) => <Login store={DreamStore} history={history} {...this.props} />} />
+          <Route exact path="/register" render={({history}) => <Register store={DreamStore} history={history} {...this.props} />} />
+          <Route exact path="/mentee" render={({history}) => <MenteeApplication store={DreamStore} history={history} {...this.props} />} />
         </div>
       </Router>
     );

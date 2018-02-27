@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css';
+import { Redirect } from 'react-router-dom';
 import * as api from '../Utils/api'
 import { observer } from 'mobx-react'
 
@@ -34,6 +35,9 @@ export class Login extends Component {
 
     render() {
         const { store } = this.props
+        if (store.token) {
+            return <Redirect to='/mentee' />
+        }
         return (
             <div className="login-clean">
                 <form>
@@ -48,4 +52,3 @@ export class Login extends Component {
         );
     }
 }
-
