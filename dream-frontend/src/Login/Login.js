@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Login.css';
+import * as api from '../Utils/api'
 import { observer } from 'mobx-react'
 
 @observer
@@ -19,14 +20,17 @@ export class Login extends Component {
         this.updateProperty(event.target.name, event.target.value)
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault()
-        console.log(this.props.store.email)
-        console.log(this.props.store.password)
+        if (this.props.store.email && this.props.store.password) {
+            console.log(this.props.store.email)
+            console.log(this.props.store.password)
+            console.log(await api.login(this.props.store.email, this.props.store.password))
+        }
     }
 
     render() {
-        const {store} = this.props
+        const { store } = this.props
         return (
             <div className="login-clean">
                 <form>
