@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+var cors = require('cors')
 
 var api = require('./routes/api');
 require('dotenv').config(); // load env vars
@@ -23,7 +24,7 @@ mongoose.connection.on('error', (err) => {
   console.log("Mongoose connection error");
 });
 
-
+app.use(cors())
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -44,7 +45,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({error: err.message});
 });
 
 module.exports = app;

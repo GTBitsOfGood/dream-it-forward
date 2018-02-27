@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Login.css';
+import { Redirect } from 'react-router-dom';
+import * as api from '../Utils/api'
 import { observer } from 'mobx-react'
 
 @observer
-export class Login extends React.Component {
+export class Login extends Component {
     constructor(props) {
         super(props);
         this.updateProperty = this.updateProperty.bind(this)
@@ -19,14 +21,25 @@ export class Login extends React.Component {
         this.updateProperty(event.target.name, event.target.value)
     }
 
-    onSubmit(e) {
+    async onSubmit(e) {
         e.preventDefault()
-        console.log(this.props.store.email)
-        console.log(this.props.store.password)
+        if (this.props.store.email && this.props.store.password) {
+            const data = await api.login(this.props.store.email, this.props.store.password)
+            if (data.token) {
+                this.props.store.email = '';
+                this.props.store.password = '';
+                this.props.store.token = data.token;
+                localStorage.setItem('token', data.token);
+            }
+            else window.toastr.error('Login failed')
+        }
     }
 
     render() {
-        const {store} = this.props
+        const { store } = this.props
+        if (store.token) {
+            return <Redirect to='/mentee-app' />
+        }
         return (
             <div className="login-clean">
                 <form>
@@ -41,4 +54,3 @@ export class Login extends React.Component {
         );
     }
 }
-
