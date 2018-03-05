@@ -1,0 +1,6 @@
+{
+    "events" :{
+        "restart": "standard --fix",
+        "start": "standard --fix"
+    }
+}
