@@ -1,9 +1,4 @@
-body {
-    background: #f1f7fc;
-}
-
 .mentee-application {
-    background: #f1f7fc;
     padding: 80px 0;
 }
 
@@ -37,8 +32,8 @@ body {
     height: 42px;
 }
 
-.mentee-application form .btn-primary {
-    background: #f4476b;
+.mentee-application .btn-primary {
+    background: rgb(34,167,95);
     border: none;
     border-radius: 4px;
     padding: 11px;
@@ -49,7 +44,6 @@ body {
 }
 
 .mentee-application .btn {
-    background: #6aaf52;
     border: none;
     border-radius: 4px;
     padding: 11px;
@@ -59,11 +53,11 @@ body {
     outline: none !important;
 }
 
-.mentee-application .btn:hover {
-    background: #35572a;
+.mentee-application .btn-primary:hover {
+    background: rgb(28,161,89);
 }
 
-.mentee-application .btn:active {
+.mentee-application .btn-primary:active {
     transform: translateY(1px);
 }
 

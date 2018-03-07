@@ -46,7 +46,7 @@ export class MenteeApplication extends Component {
         return (
             <div className="mentee-application">
                 <div className="container">
-                <button onClick={() => this.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn-warning" type="button">Logout</button>
+                <button onClick={() => this.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
                     <div className="well">
                         <form>
                             <h1>Participant Registration Information </h1>

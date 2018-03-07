@@ -1,9 +1,5 @@
-body {
-  background:#f1f7fc;
-}
-
 .login-clean {
-  background:#f1f7fc;
+  height: 100%;
   padding:80px 0;
 }
 
@@ -39,6 +35,9 @@ body {
 
 .login-clean form .btn-primary {
   background:#f4476b;
+}
+
+.login-clean form .btn {
   border:none;
   border-radius:4px;
   padding:11px;
@@ -46,6 +45,18 @@ body {
   margin-top:26px;
   text-shadow:none;
   outline:none !important;
+}
+
+.login-clean form .btn-info {
+  background:rgb(34,167,95);
+}
+
+.login-clean form .btn-info:hover, .login-clean form .btn-info:active {
+  background:rgb(28,161,89);
+}
+
+.login-clean form .btn-primary:active {
+  transform:translateY(1px);
 }
 
 .login-clean form .btn-primary:hover, .login-clean form .btn-primary:active {
