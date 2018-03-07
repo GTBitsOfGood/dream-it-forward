@@ -9,12 +9,27 @@ var userSchema = new Schema({
     // mentor/mentee?
     isMentor: Boolean,
 
+    // Mente app questions/answers
+    menteeApp: {
+        questions: [{ type: String, trim: true }],
+        answers: [{ type: String, trim: true }]
+    },
+
+    // Mentor app questions/answers
+    mentorApp: {
+        questions: [{ type: String, trim: true }],
+        answers: [{ type: String, trim: true }]
+    },
+
     // login info
     username: { type: String, required: true, unique: true },
     password: { type: String, required: true },
 
-    // user relations in this system
-    relations: [{type: String}],
+    // Your mentor
+    mentorId: { type: String },
+
+    // Mentees
+    menteeId: [{ type: String }],
 
     // How did you hear about us?
     hearSource: String,
