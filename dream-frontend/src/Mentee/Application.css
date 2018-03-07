@@ -2,12 +2,12 @@ body {
     background: #f1f7fc;
 }
 
-.mentee-application {
+.application {
     background: #f1f7fc;
     padding: 80px 0;
 }
 
-.mentee-application form {
+.application form {
     max-width: 100%;
     width: 90%;
     margin: 15px auto;
@@ -18,14 +18,14 @@ body {
     box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
 }
 
-.mentee-application .illustration {
+.application .illustration {
     text-align: center;
     padding: 0 0 20px;
     font-size: 100px;
     color: rgb(244, 71, 107);
 }
 
-.mentee-application form .form-control {
+.application form .form-control {
     background: #f7f9fc;
     border: none;
     border-bottom: 1px solid #dfe7f1;
@@ -37,7 +37,7 @@ body {
     height: 42px;
 }
 
-.mentee-application form .btn-primary {
+.application form .btn-primary {
     background: #f4476b;
     border: none;
     border-radius: 4px;
@@ -48,7 +48,7 @@ body {
     outline: none !important;
 }
 
-.mentee-application .btn {
+.application .btn {
     background: #6aaf52;
     border: none;
     border-radius: 4px;
@@ -59,22 +59,22 @@ body {
     outline: none !important;
 }
 
-.mentee-application .btn:hover {
+.application .btn:hover {
     background: #35572a;
 }
 
-.mentee-application .btn:active {
+.application .btn:active {
     transform: translateY(1px);
 }
 
-.mentee-application container {
+.application container {
     margin: 15px 5px 15px 5px;
     max-width: 100%;
     width: auto;
     height: auto;
 }
 
-.mentee-application well {
+.application well {
     width: 100%;
     height: 100%;
     margin-bottom: 0px;
@@ -82,22 +82,22 @@ body {
     margin-top: 0px;
 }
 
-.mentee-application h1 {
+.application h1 {
     font-size: 24px;
     margin-top: 10px;
 }
 
-.mentee-application small {
+.application small {
     margin-bottom: 0px;
     font-size: 14px;
     line-height: 9px;
     letter-spacing: 0px;
 }
 
-.mentee-application .first {
+.application .first {
     margin-top: 15px;
 }
 
-.mentee-application .radio-inline {
+.application .radio-inline {
     margin-right: 10px;
 }

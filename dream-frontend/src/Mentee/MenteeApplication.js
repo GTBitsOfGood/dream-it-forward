@@ -44,7 +44,7 @@ export class MenteeApplication extends Component {
             return <Redirect to='/' />
         }
         return (
-            <div className="mentee-application">
+            <div className="application">
                 <div className="container">
                 <button onClick={() => this.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn-warning" type="button">Logout</button>
                     <div className="well">
