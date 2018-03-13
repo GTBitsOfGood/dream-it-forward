@@ -9,16 +9,16 @@ var userSchema = new Schema({
     // mentor/mentee?
     isMentor: Boolean,
 
-    // Mente app questions/answers
-    menteeApp: {
-        questions: [{ type: String, trim: true }],
-        answers: [{ type: String, trim: true }]
-    },
-
-    // Mentor app questions/answers
-    mentorApp: {
-        questions: [{ type: String, trim: true }],
-        answers: [{ type: String, trim: true }]
+    // Mentee/mentor application
+    application: {
+        mentee: {
+            questions: [{ type: String, trim: true }],
+            answers: [{ type: String, trim: true }]
+        },
+        mentor: {
+            questions: [{ type: String, trim: true }],
+            answers: [{ type: String, trim: true }]
+        }
     },
 
     // login info
