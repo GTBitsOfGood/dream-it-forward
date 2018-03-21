@@ -16,6 +16,8 @@ export class MentorApplication extends Component {
         this.onChange = this.onChange.bind(this)
         this.validate = this.validate.bind(this)
         this.sanitized = this.sanitized.bind(this)
+        this.canSubmit = this.canSubmit.bind(this)
+        this.onSubmit = this.onSubmit.bind(this)
         this.state = {
             gradelevel: {
                 elementary: '',
@@ -57,45 +59,49 @@ export class MentorApplication extends Component {
     }
 
     onSubmit() {
-      /*var requiredFields = document.getElementsByClassName("required")
-      var allGood = true;
-      for (var i = 0; i < requiredFields.length; i++) {
-        var field = requiredFields[i];
-        var text = undefined;
-        if (field.tagName === "LABEL") {
-          var children = field.children;
-          for (var c = 0; c < children.length; c++) {
-            text = field
-            if (children[c].tagName === "INPUT" || children[c].tagName === "SELECT") {
-              field = children[c]
+        if (this.canSubmit()) {
+          window.location.replace('/submitted');
+        }
+    }
+
+    canSubmit() {
+        /*var requiredFields = document.getElementsByClassName("required")
+        var allGood = true;
+        for (var i = 0; i < requiredFields.length; i++) {
+          var field = requiredFields[i];
+          var text = undefined;
+          if (field.tagName === "LABEL") {
+            var children = field.children;
+            for (var c = 0; c < children.length; c++) {
+              text = field
+              if (children[c].tagName === "INPUT" || children[c].tagName === "SELECT") {
+                field = children[c]
+              }
+            }
+          }
+          console.log("field:")
+          console.log(field.value);
+          console.log("text");
+          console.log(text);
+          if (!field.disabled && (!field.value || field.value === "off" || field.value === 'on')) {
+            if (text) {
+              text.setAttribute("style", "color: #e5705b");
+            } else {
+              field.setAttribute("style", "background-color: #ffe2dd");
+            }
+            allGood = false;
+          } else {
+            field.removeAttribute("style");
+            if (text) {
+              text.removeAttribute("style");
             }
           }
         }
-        console.log("field:")
-        console.log(field.value);
-        console.log("text");
-        console.log(text);
-        if (!field.disabled && (!field.value || field.value === "off" || field.value === 'on')) {
-          if (text) {
-            text.setAttribute("style", "color: #e5705b");
-          } else {
-            field.setAttribute("style", "background-color: #ffe2dd");
-          }
-          allGood = false;
-        } else {
-          field.removeAttribute("style");
-          if (text) {
-            text.removeAttribute("style");
-          }
+        if (allGood === false) {
+          window.toastr.error("Please fill out the required fields.");
         }
-      }
-      if (allGood === false) {
-        window.toastr.error("Please fill out the required fields.");
-    }*/
-    var grades = document.getElementsByClassName("grade-level");
-        console.log(grades[0].value.elementary);
-        console.log(grades[0].value.middle);
-        console.log(grades[0].value.high);
+        return allGood;*/
+        return true;
     }
 
     sanitized(string) {
@@ -103,10 +109,10 @@ export class MentorApplication extends Component {
     }
 
     validate(name, string) {
-      if (string) {
+      /*if (string) {
         string = string + ''
         if (!this.sanitized(string) && name !== 'phone') {
-          window.toastr.error('Pls don\'t hacc™');
+          window.toastr.error('Invalid Input');
         } else if (name === 'email') {
           if (!validator.isEmail(string)) {
             window.toastr.error('Enter a valid email address');
@@ -126,7 +132,7 @@ export class MentorApplication extends Component {
             window.toastr.error('Please enter a valid phone number');
           }
         }
-      }
+      }*/
     }
 
     render() {
