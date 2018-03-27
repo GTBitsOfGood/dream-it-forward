@@ -57,7 +57,7 @@ export class Register extends React.Component {
                     <div className="form-group"><input value={store.email} onChange={this.onChange} className="form-control" type="email" name="email" placeholder="Email" /></div>
                     <div className="form-group"><input value={store.password} onChange={this.onChange} className="form-control" type="password" name="password" placeholder="Password" /></div>
                     <div className="form-group"><input value={store.passConfirm} onChange={this.onChange} className="form-control" type="password" name="passConfirm" placeholder="Confirm Password" /></div>
-                    <div className="form-group"><button className="btn btn-primary btn-block" onClick={(e) => this.onSubmit(e)} style={{ backgroundColor: "rgb(34,167,95)" }}>Register</button></div>
+                    <div className="form-group"><button className="btn btn-info btn-block" onClick={(e) => this.onSubmit(e)}>Register</button></div>
                 </form>
             </div>
         );
