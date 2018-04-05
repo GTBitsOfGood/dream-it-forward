@@ -2,27 +2,23 @@ import React from 'react';
 import './Highlight-Clean.css';
 import * as api from '../Utils/api';
 import { Redirect } from 'react-router-dom';
-import { observer } from 'mobx-react';
+import { observer, inject } from 'mobx-react';
 
+@inject('rootStore')
 @observer
 export class Landing extends React.Component {
     constructor(props) {
-        super(props);
-    }
-
-    onLogout() {
-        localStorage.removeItem('token');
-        this.props.store.token = '';
+        super(props)
+        this.dreamStore = this.props.rootStore.dreamStore
     }
 
     render() {
-        const { store } = this.props;
-        if (!store.token) {
+        if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
         return (
             <div className="highlight-clean">
-                <button onClick={() => this.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
+                <button onClick={() => this.dreamStore.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
                 <div className="container">
                     <div className="intro">
                         <h2 className="text-center">Dream It Forward</h2>

@@ -3,64 +3,48 @@ import { Route, NavLink, HashRouter } from 'react-router-dom';
 import './MenteeApplication.css'
 import { Redirect } from 'react-router-dom';
 import * as api from '../Utils/api'
-import { observer } from 'mobx-react'
+import { observer, inject } from 'mobx-react'
 
+@inject('rootStore')
 @observer
 export class MenteeApplication extends Component {
 
     constructor(props) {
         super(props);
-        this.updateProperty = this.updateProperty.bind(this)
-        this.onChange = this.onChange.bind(this)
-        this.state = {
-            
-        }
+        this.dreamStore = this.props.rootStore.dreamStore
+        this.menteeStore = this.props.rootStore.menteeAppStore
+        this.state = {}
     }
 
     async componentDidMount() {
-        const data = await api.verifyToken(this.props.store.token)
+        const data = await api.verifyToken(this.dreamStore.token)
         if (!data || data.status !== 'valid') {
-            this.props.store.token = ''
+            this.dreamStore.token = ''
         }
     }
 
-    onLogout() {
-        console.log("Fdsf")
-        localStorage.removeItem('token')
-        this.props.store.token = ''
-    }
-
-    updateProperty(key, value) {
-        this.props.store[key] = value
-    }
-
-    onChange(event) {
-        this.updateProperty(event.target.name, event.target.value)
-    }
-
     render() {
-        const { store } = this.props
-        if (!store.token) {
+        if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
         return (
             <div className="mentee-application">
                 <div className="container">
-                <button onClick={() => this.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
+                <button onClick={() => this.dreamStore.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
                     <div className="well">
                         <form>
                             <h1>Participant Registration Information </h1>
                             <small>Enrolling Student Dreamer (Participant) Info. Please only complete this form when you are ready to enroll. All others please contact us directly with any questions you have before enrollment. </small>
                             <div className="form-group">
-                                <input value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} className="form-control first" type="text" placeholder="* Email Address" />
+                                <input value={this.menteeStore.data.email} onChange={(e) => this.menteeStore.updateProperty(e)} className="form-control first" type="text" placeholder="* Email Address" />
                             </div>
                             <div className="form-group">
                                 <label className="control-label">Which Program Are You Registering</label>
                                 <div className="radio">
-                                    <label className="control-label"><input type="radio" />Dream Women's Club - Mentorship &amp; workshops for women and single mothers</label>
+                                    <label className="control-label"><input type="radio" name="program" />Dream Women's Club - Mentorship &amp; workshops for women and single mothers</label>
                                 </div>
                                 <div className="radio">
-                                    <label className="control-label"><input type="radio" />We Dream Mentoring for Young Women ages 10 - 21</label>
+                                    <label className="control-label"><input type="radio" name="program" />We Dream Mentoring for Young Women ages 10 - 21</label>
                                 </div>
                             </div>
                             <div className="form-group">
