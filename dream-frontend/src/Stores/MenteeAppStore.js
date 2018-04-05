@@ -1,6 +1,6 @@
-import { computed, observable } from 'mobx'
-
-export class MenteeApp {
+import { computed, observable, action } from 'mobx'
+// E-mentoring for Boys or Girls ages 5-18
+export class MenteeAppStore {
     @observable data = {
       email: "",
       program: "",
@@ -35,4 +35,10 @@ export class MenteeApp {
       photoRelease: "",
       permission: ""
     }
+
+    @action updateProperty(event) {
+      this[event.target.name] = event.target.value
+    }
   }
+
+export default MenteeAppStore

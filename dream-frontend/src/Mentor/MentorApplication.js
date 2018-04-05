@@ -3,10 +3,10 @@ import { Route, NavLink, HashRouter } from 'react-router-dom';
 import './Application.css'
 import { Redirect } from 'react-router-dom';
 import * as api from '../Utils/api'
-import { observer } from 'mobx-react'
-import { validator } from 'validator'
+import { observer, inject } from 'mobx-react'
 /*<input value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} className="form-control first" type="text" placeholder="* Email Address" />*/
 
+@inject('rootStore')
 @observer
 export class MentorApplication extends Component {
 
@@ -18,6 +18,7 @@ export class MentorApplication extends Component {
         this.sanitized = this.sanitized.bind(this)
         this.canSubmit = this.canSubmit.bind(this)
         this.onSubmit = this.onSubmit.bind(this)
+        this.dreamStore = this.props.rootStore.dreamStore
         this.state = {
             gradelevel: {
                 elementary: '',
@@ -136,8 +137,7 @@ export class MentorApplication extends Component {
     }
 
     render() {
-        const { store } = this.props
-        if (!store.token) {
+        if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
         console.log(this.state.additionalFees);
