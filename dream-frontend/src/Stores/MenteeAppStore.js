@@ -1,5 +1,5 @@
 import { computed, observable, action } from 'mobx'
-// E-mentoring for Boys or Girls ages 5-18
+
 export class MenteeAppStore {
     @observable data = {
       email: "",
@@ -37,7 +37,48 @@ export class MenteeAppStore {
     }
 
     @action updateProperty(event) {
-      this[event.target.name] = event.target.value
+      this.data[event.target.name] = event.target.value
+    }
+
+    @action radioChanged(event) {
+      if (event.target.checked) {
+        this.data[event.target.name] = event.target.value
+      }
+    }
+
+    @action checkBoxChanged(event) {
+      this.data[event.target.name] = event.target.checked
+    }
+
+    onSubmit() {
+      let canSubmit = true;
+      let notRequired = ["numChildren", "parentEmail", "parentAddress"];
+      for (let property in this.data) {
+        if (this.data.hasOwnProperty(property)) {
+          if (!(notRequired.includes(property))) {
+            if (this.data[property].length < 1) {
+              return;
+            }
+            if (property === "email") {
+              canSubmit = canSubmit && this.validateEmail(this.data[property]);
+              console.log(canSubmit);
+            }
+          } else {
+            if (property.length > 0) {
+              if (property === "parentEmail") {
+                canSubmit = canSubmit && this.validateEmail(this.data[property]);
+              }
+            }
+          }
+        }
+      }
+      console.log(this.data);
+      // do backend stuff
+    }
+
+    validateEmail(email) {
+      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      return re.test(String(email).toLowerCase());
     }
   }
 

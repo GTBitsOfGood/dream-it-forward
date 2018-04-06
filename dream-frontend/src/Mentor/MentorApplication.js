@@ -4,7 +4,6 @@ import './Application.css'
 import { Redirect } from 'react-router-dom';
 import * as api from '../Utils/api'
 import { observer, inject } from 'mobx-react'
-/*<input value={this.state.email} onChange={(e) => { this.setState({ email: e.target.value }) }} className="form-control first" type="text" placeholder="* Email Address" />*/
 
 @inject('rootStore')
 @observer
