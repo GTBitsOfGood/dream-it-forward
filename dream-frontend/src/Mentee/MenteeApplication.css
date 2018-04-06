@@ -95,3 +95,7 @@
 .mentee-application .radio-inline {
     margin-right: 10px;
 }
+
+.mentee-application .checkbox-inline {
+    margin-left: 0px;
+}
