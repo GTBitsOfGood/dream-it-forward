@@ -280,7 +280,7 @@ export class MentorApplication extends Component {
                                 </div>
                                 <div className="form-group">
                                     <div>
-                                        <label className="control-label">Position of Interest</label>
+                                        <label className="control-label">Position of Interest *</label>
                                     </div>
                                     <span>
                                         <label className="control-label checkbox-inline">

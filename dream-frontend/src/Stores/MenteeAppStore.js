@@ -28,12 +28,12 @@ export class MenteeAppStore {
     allergies: "",
     hear: "",
     tShirtSize: "",
-    membershipFee: "",
-    extraMoney: "",
-    tuition: "",
-    liability: "",
+    membershipFee: false,
+    extraMoney: false,
+    tuition: false,
+    liability: false,
     photoRelease: "",
-    permission: ""
+    permission: false
   }
 
   @action updateProperty(event) {
@@ -51,23 +51,30 @@ export class MenteeAppStore {
   }
 
   onSubmit() {
-    let canSubmit = true;
     let notRequired = ["numChildren", "parentEmail", "parentAddress", "tShirtSize"];
     for (let property in this.data) {
       if (this.data.hasOwnProperty(property)) {
         if (!(notRequired.includes(property))) {
-          if (this.data[property].length < 1) {
+          if (typeof(this.data[property]) === "boolean") {
+            if (!(this.data[property])) {
+              return;
+            }
+          } else if (this.data[property].length < 1) {
             console.log(property);
             return;
           }
           if (property === "email") {
-            canSubmit = canSubmit && this.validateEmail(this.data[property]);
-            console.log(canSubmit);
+            if (!(this.validateEmail(this.data[property]))) {
+              return;
+            }
+            
           }
         } else {
           if (property.length > 0) {
             if (property === "parentEmail") {
-              canSubmit = canSubmit && this.validateEmail(this.data[property]);
+              if (!(this.validateEmail(this.data[property]))) {
+                return;
+              }
             }
           }
         }

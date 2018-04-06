@@ -28,10 +28,10 @@ export class MentorAppStore {
             evening: false
         },
         timeCommitment: false,
-        training: "",
+        training: false,
         felony: "",
         indictment: "",
-        backgroundCheck: "",
+        backgroundCheck: false,
         position: {
             volunteer: false,
             fundraisingAndEvents: false,
@@ -71,29 +71,48 @@ export class MentorAppStore {
     }
 
     onSubmit() {
-        // let canSubmit = true;
-        // let notRequired = ["numChildren", "parentEmail", "parentAddress"];
-        // for (let property in this.data) {
-        //     if (this.data.hasOwnProperty(property)) {
-        //         if (!(notRequired.includes(property))) {
-        //             if (this.data[property].length < 1) {
-        //                 return;
-        //             }
-        //             if (property === "email") {
-        //                 canSubmit = canSubmit && this.validateEmail(this.data[property]);
-        //                 console.log(canSubmit);
-        //                 }
-        //             } else {
-        //                 if (property.length > 0) {
-        //                     if (property === "parentEmail") {
-        //                     canSubmit = canSubmit && this.validateEmail(this.data[property]);
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-      console.log(this.data);
-      // do backend stuff
+        let canSubmit = true;
+        for (let property in this.data) {
+            if (this.data.hasOwnProperty(property)) {
+                if (typeof(this.data[property]) !== "boolean" && this.data[property].length < 1) {
+                    return;
+                }
+                if (property === "email") {
+                    if (!(this.validateEmail(this.data[property]))) {
+                        return;
+                    }
+                }
+            }
+        }
+        let atLeastOne = false;
+        for (let day in this.data.days) {
+            if (this.data.days.hasOwnProperty(day)) {
+                atLeastOne = atLeastOne || this.data.days[day];
+            }
+        }
+        if (!atLeastOne) {
+            return;
+        }
+        atLeastOne = false;
+        for (let time in this.data.times) {
+            if (this.data.times.hasOwnProperty(time)) {
+                atLeastOne = atLeastOne || this.data.times[time];
+            }
+        }
+        if (!atLeastOne) {
+            return;
+        }
+        atLeastOne = false;
+        for (let position in this.data.position) {
+            if (this.data.position.hasOwnProperty(position)) {
+                atLeastOne = atLeastOne || this.data.position[position];
+            }
+        }
+        if (!atLeastOne) {
+            return;
+        }
+        console.log(this.data);
+        // do backend stuff
     }
 
     validateEmail(email) {
