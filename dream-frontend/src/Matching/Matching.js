@@ -33,46 +33,58 @@ export class Matching extends Component {
                     <div class="tab-content">
                         <div class="tab-pane active" role="tabpanel" id="tab-1">
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Mentor</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td><span class="badge" style={{padding:9}}>Billy Bob Jo</span></td>
-                                            <td style={{textAlign: 'center'}}><button class="btn btn-primary" type="button">View Info</button></td>
-                                            <td style={{textAlign: 'center'}}><button class="btn btn-primary" type="button">Match</button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="tbl-header">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Mentor</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="tbl-content">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="vert-aligned">John Doe</td>
+                                                <td class="vert-aligned"><span class="badge" style={{padding:9}}>Billy Bob Jo</span></td>
+                                                <td class="vert-aligned" style={{textAlign: 'center'}}><button class="btn btn-primary" type="button">View Info</button></td>
+                                                <td class="vert-aligned" style={{textAlign: 'center'}}><button class="btn btn-primary" type="button">Match</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                         <div class="tab-pane" role="tabpanel" id="tab-2">
                             <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Mentees</th>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>John Doe</td>
-                                            <td><span class="badge" style={{padding:9}}>Long Indian Name</span></td>
-                                            <td style={{textAlign: 'center'}}><button class="btn btn-primary" type="button">View Info</button></td>
-                                            <td style={{textAlign: 'center'}}><button class="btn btn-primary" type="button">Match</button></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                <div class="tbl-header">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Mentees</th>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                                <div class="tbl-content">
+                                    <table>
+                                        <tbody>
+                                            <tr>
+                                                <td class="vert-aligned">John Doe</td>
+                                                <td class="vert-aligned"><span class="badge" style={{ padding: 9 }}>Long Indian Name</span></td>
+                                                <td class="vert-aligned" style={{ textAlign: 'center' }}><button class="btn btn-primary" type="button">View Info</button></td>
+                                                <td class="vert-aligned" style={{ textAlign: 'center' }}><button class="btn btn-primary" type="button">Match</button></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
