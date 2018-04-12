@@ -59,7 +59,7 @@ export class Matching extends Component {
                 <div className="tbl-content">
                   <table>
                     <tbody>
-                      <tr>
+                      <tr onClick={e => this.matchingStore.selectToggle(e)} className={this.matchingStore.data.isSelected ? "selected" : null}>
                         <td className="vert-aligned">John Doe</td>
                         <td className="vert-aligned"><span className="badge" style={{padding:9}}>Billy Bob Jo</span></td>
                         <td className="vert-aligned" style={{textAlign: 'center'}}><button name="sup" onClick={(e) => this.matchingStore.handleOpenInfoModal(e)} className="btn btn-primary" type="button">View Info</button></td>

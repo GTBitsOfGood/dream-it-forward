@@ -3,7 +3,8 @@ import { computed, observable, action } from 'mobx'
 export class MatchingStore {
     @observable data = {
         showInfoModal: false,
-        showMatchingModal: false
+        showMatchingModal: false,
+        isSelected: false
     }
     @observable mentees = []
     @observable mentors = []
@@ -25,7 +26,9 @@ export class MatchingStore {
         this.data.showMatchingModal = false;
     }
 
-
+    @action selectToggle(event) {
+        this.data.isSelected = !this.data.isSelected
+    }
 }
 
 
