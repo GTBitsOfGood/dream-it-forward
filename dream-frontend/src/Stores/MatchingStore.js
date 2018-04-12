@@ -1,15 +1,32 @@
 import { computed, observable, action } from 'mobx'
 
 export class MatchingStore {
-    @observable mentees = {
+    @observable data = {
+        showInfoModal: false,
+        showMatchingModal: false
+    }
+    @observable mentees = []
+    @observable mentors = []
+    @observable selected = []
+    
+    @action handleOpenInfoModal(event) {
+        this.data.showInfoModal = true;
+    }
 
+    @action handleCloseInfoModal(event) {
+        this.data.showInfoModal = false;
     }
-    @observable mentors = {
 
+    @action handleOpenMatchingModal(event) {
+        this.data.showMatchingModal = true;
     }
-    @observable selected = {
-        
+
+    @action handleCloseMatchingModal(event) {
+        this.data.showMatchingModal = false;
     }
+
+
 }
+
 
 export default MatchingStore;
