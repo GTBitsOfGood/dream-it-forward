@@ -4,7 +4,10 @@ import './Matching.css'
 import { Redirect } from 'react-router-dom';
 import * as api from '../Utils/api'
 import { observer, inject } from 'mobx-react'
+import { MenteeModal } from '../MenteeModal/MenteeModal';
+import { MentorModal } from '../MentorModal/MentorModal';
 import ReactModal from 'react-modal';
+import DreamStore from '../Stores/DreamStore'
 
 ReactModal.setAppElement('body');
 
@@ -28,12 +31,16 @@ export class Matching extends Component {
     }
     return (
       <div className="container">
-        <ReactModal isOpen={this.matchingStore.data.showInfoModal} contentLabel="App Modal">
-          <p>Info Modal</p>
-          <button onClick={(e) => this.matchingStore.handleCloseInfoModal(e)} className="btn btn-primary" type="button">Close Modal</button>
+        <ReactModal isOpen={this.matchingStore.data.showMenteeModal} contentLabel="Mentee Modal">
+          <button onClick={(e) => this.matchingStore.handleCloseMenteeModal(e)} className="btn btn-primary" type="button">Close Modal</button>
+          <MenteeModal store={DreamStore} {...this.props}/>
         </ReactModal>
-        <ReactModal isOpen={this.matchingStore.data.showMatchingModal} contentLabel="App Modal">
-          <p>Matching Modal</p>
+        <ReactModal isOpen={this.matchingStore.data.showMentorModal} contentLabel="Mentor Modal">
+          <button onClick={(e) => this.matchingStore.handleCloseMentorModal(e)} className="btn btn-primary" type="button">Close Modal</button>
+          <MentorModal store={DreamStore} {...this.props}/>
+        </ReactModal>
+        <ReactModal isOpen={this.matchingStore.data.showMatchingModal} contentLabel="Matching Modal">
+          <p> Matching Modal </p>
           <button onClick={(e) => this.matchingStore.handleCloseMatchingModal(e)} className="btn btn-primary" type="button">Close Modal</button>
         </ReactModal>
         <div id="minimal-tabs">
@@ -62,7 +69,7 @@ export class Matching extends Component {
                       <tr onClick={e => this.matchingStore.selectToggle(e)} className={this.matchingStore.data.isSelected ? "selected" : null}>
                         <td className="vert-aligned">John Doe</td>
                         <td className="vert-aligned"><span className="badge" style={{padding:9}}>Billy Bob Jo</span></td>
-                        <td className="vert-aligned" style={{textAlign: 'center'}}><button name="sup" onClick={(e) => this.matchingStore.handleOpenInfoModal(e)} className="btn btn-primary" type="button">View Info</button></td>
+                        <td className="vert-aligned" style={{textAlign: 'center'}}><button name="sup" onClick={(e) => this.matchingStore.handleOpenMenteeModal(e)} className="btn btn-primary" type="button">View Info</button></td>
                         <td className="vert-aligned" style={{ textAlign: 'center' }}><button onClick={(e) => this.matchingStore.handleOpenMatchingModal(e)} className="btn btn-primary" type="button">Match</button></td>
                       </tr>
                     </tbody>
@@ -90,7 +97,7 @@ export class Matching extends Component {
                       <tr>
                         <td className="vert-aligned">John Doe</td>
                         <td className="vert-aligned"><span className="badge" style={{ padding: 9 }}>Long Indian Name</span></td>
-                        <td className="vert-aligned" style={{ textAlign: 'center' }}><button onClick={(e) => this.matchingStore.handleOpenInfoModal(e)} className="btn btn-primary" type="button">View Info</button></td>
+                        <td className="vert-aligned" style={{ textAlign: 'center' }}><button onClick={(e) => this.matchingStore.handleOpenMentorModal(e)} className="btn btn-primary" type="button">View Info</button></td>
                         <td className="vert-aligned" style={{ textAlign: 'center' }}><button onClick={(e) => this.matchingStore.handleOpenMatchingModal(e)} className="btn btn-primary" type="button">Match</button></td>
                       </tr>
                     </tbody>
