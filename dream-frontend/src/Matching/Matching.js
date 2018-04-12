@@ -55,6 +55,7 @@ export class Matching extends Component {
                   <table>
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Mentor</th>
                         <th></th>
@@ -66,7 +67,8 @@ export class Matching extends Component {
                 <div className="tbl-content">
                   <table>
                     <tbody>
-                      <tr onClick={e => this.matchingStore.selectToggle(e)} className={this.matchingStore.data.isSelected ? "selected" : null}>
+                      <tr  className={this.matchingStore.data.isSelected ? "selected" : null}>
+                        <td className="vert-aligned"><input checked={this.matchingStore.data.isSelected ? "checked" : ""} value={this.matchingStore.data.isSelected} type="checkbox" onClick={e => this.matchingStore.selectToggle(e)}/></td>
                         <td className="vert-aligned">John Doe</td>
                         <td className="vert-aligned"><span className="badge" style={{padding:9}}>Billy Bob Jo</span></td>
                         <td className="vert-aligned" style={{textAlign: 'center'}}><button name="sup" onClick={(e) => this.matchingStore.handleOpenMenteeModal(e)} className="btn btn-primary" type="button">View Info</button></td>
@@ -83,6 +85,7 @@ export class Matching extends Component {
                   <table>
                     <thead>
                       <tr>
+                        <th></th>
                         <th>Name</th>
                         <th>Mentees</th>
                         <th></th>
@@ -94,7 +97,8 @@ export class Matching extends Component {
                 <div className="tbl-content">
                   <table>
                     <tbody>
-                      <tr>
+                      <tr className={this.matchingStore.data.isSelected ? "selected" : null}>
+                        <td className="vert-aligned"><input checked={this.matchingStore.data.isSelected ? "checked" : ""} type="checkbox" onClick={e => this.matchingStore.selectToggle(e)} /></td>
                         <td className="vert-aligned">John Doe</td>
                         <td className="vert-aligned"><span className="badge" style={{ padding: 9 }}>Long Indian Name</span></td>
                         <td className="vert-aligned" style={{ textAlign: 'center' }}><button onClick={(e) => this.matchingStore.handleOpenMentorModal(e)} className="btn btn-primary" type="button">View Info</button></td>
