@@ -127,7 +127,7 @@ export class MenteeApplication extends Component {
                                 <input name="doctorAddress" value={this.menteeStore.data.doctorAddress} onChange={(e) => this.menteeStore.updateProperty(e)}className="form-control" type="text" placeholder="* Doctor's Address" inputMode="numeric" />
                             </div>
                             <div className="form-group">
-                                <label className="control-label">Does the Dreamer have any allergies, chronic illness, or medical conditions either physical, behavioral, mental? If yes, please describe. *</label>
+                                <label className="control-label">Does the Dreamer have any allergies, chronic illness, or medical conditions either physical, behavioral, mental? If yes, please describe.</label>
                                 <textarea name="allergies" value={this.menteeStore.data.allergies} onChange={(e) => this.menteeStore.updateProperty(e)} className="form-control"></textarea>
                             </div>
                             <h1>Additional Information</h1>
@@ -192,7 +192,7 @@ export class MenteeApplication extends Component {
                                         <label className="control-label radio-inline"><input onChange={(e) => this.menteeStore.radioChanged(e)} name="photoRelease" value="Yes" type="radio" />Yes</label>
                                     </span>
                                     <span>
-                                        <label className="control-label radio-inline"><input onChange={(e) => this.menteeStore.radioChanged(e)} name="permission" value="No" type="radio" />No</label>
+                                        <label className="control-label radio-inline"><input onChange={(e) => this.menteeStore.radioChanged(e)} name="photoRelease" value="No" type="radio" />No</label>
                                     </span>
                                 </div>
                             </div>

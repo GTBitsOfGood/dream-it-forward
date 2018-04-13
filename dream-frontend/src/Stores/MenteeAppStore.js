@@ -10,7 +10,6 @@ export class MenteeAppStore {
     age: "",
     school: "",
     grade: "",
-    numOfDreamers: "",
     additionalDreamers: "",
     numChildren: "",
     parentName: "",
@@ -51,28 +50,35 @@ export class MenteeAppStore {
   }
 
   onSubmit() {
-    let notRequired = ["numChildren", "parentEmail", "parentAddress", "tShirtSize"];
+    let notRequired = ["numChildren", "parentEmail", "parentAddress", "tShirtSize", "allergies"];
     for (let property in this.data) {
       if (this.data.hasOwnProperty(property)) {
         if (!(notRequired.includes(property))) {
           if (typeof(this.data[property]) === "boolean") {
             if (!(this.data[property])) {
+              console.log(property);
+              window.toastr.error('Please fill in all required fields')
               return;
             }
           } else if (this.data[property].length < 1) {
             console.log(property);
+            window.toastr.error('Please fill in all required fields')
             return;
           }
           if (property === "email") {
             if (!(this.validateEmail(this.data[property]))) {
+              console.log("email fail");
+              window.toastr.error('Please provide a valid email')
               return;
             }
             
           }
         } else {
-          if (property.length > 0) {
+          if (this.data[property].length > 0) {
             if (property === "parentEmail") {
               if (!(this.validateEmail(this.data[property]))) {
+                console.log("parent email fail");
+                window.toastr.error('Please provide a valid email')
                 return;
               }
             }
@@ -81,6 +87,7 @@ export class MenteeAppStore {
       }
     }
     console.log(this.data);
+    window.toastr.success('Thanks for submitting!')
     // do backend stuff
   }
 

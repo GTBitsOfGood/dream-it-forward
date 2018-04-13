@@ -75,10 +75,18 @@ export class MentorAppStore {
         for (let property in this.data) {
             if (this.data.hasOwnProperty(property)) {
                 if (typeof(this.data[property]) !== "boolean" && this.data[property].length < 1) {
+                    window.toastr.error('Please fill in all required fields')
+                    console.log(property);
+                    return;
+                }
+                if (typeof(this.data[property]) === "boolean" && !this.data[property]) {
+                    window.toastr.error('Please fill in all required fields')
+                    console.log(property);
                     return;
                 }
                 if (property === "email") {
                     if (!(this.validateEmail(this.data[property]))) {
+                        window.toastr.error('Please provide a valid email')
                         return;
                     }
                 }
@@ -91,6 +99,8 @@ export class MentorAppStore {
             }
         }
         if (!atLeastOne) {
+            window.toastr.error('Please fill in all required fields')
+            console.log("days error");
             return;
         }
         atLeastOne = false;
@@ -100,6 +110,8 @@ export class MentorAppStore {
             }
         }
         if (!atLeastOne) {
+            window.toastr.error('Please fill in all required fields')
+            console.log("times error");
             return;
         }
         atLeastOne = false;
@@ -109,9 +121,12 @@ export class MentorAppStore {
             }
         }
         if (!atLeastOne) {
+            window.toastr.error('Please fill in all required fields')
+            console.log("positions error");
             return;
         }
         console.log(this.data);
+        window.toastr.success('Thanks for submitting!')
         // do backend stuff
     }
 

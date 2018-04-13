@@ -22,7 +22,7 @@ export class Navbar extends Component {
                         class="collapse navbar-collapse" id="navcol-1">
                         <ul class="nav navbar-nav navbar-right">
                             <li role="presentation"><a href="/matching">Matching</a></li>
-                            <li role="presentation"><a onClick={() => this.dreamStore.onLogout()}>Logout</a></li>
+                            <li role="presentation"><button type="button" class="btn btn-default navbar-btn" onClick={() => this.dreamStore.onLogout()}>Logout</button></li>
                         </ul>
                     </div>
                 </div>
