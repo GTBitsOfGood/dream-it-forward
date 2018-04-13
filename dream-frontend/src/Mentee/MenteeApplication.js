@@ -4,6 +4,7 @@ import './MenteeApplication.css'
 import { Redirect } from 'react-router-dom';
 import * as api from '../Utils/api'
 import { observer, inject } from 'mobx-react'
+import { Navbar } from '../Navbar/Navbar';
 
 @inject('rootStore')
 @observer
@@ -28,8 +29,8 @@ export class MenteeApplication extends Component {
         }
         return (
             <div className="mentee-application">
+                <Navbar store={this.dreamStore} {...this.props}/>
                 <div className="container">
-                <button onClick={() => this.dreamStore.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
                     <div className="well">
                         <form>
                             <h1>Participant Registration Information </h1>
