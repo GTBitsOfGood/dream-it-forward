@@ -8,7 +8,7 @@ var userSchema = new Schema({
 
     // mentor/mentee?
     state: { type: Number, required: true, default: 0 },
-    isMentor: Boolean,
+    isMentor: { type: Boolean, required: true, default: false },
     menteeApp: { type: String },
     mentorApp: { type: String },
 

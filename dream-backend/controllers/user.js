@@ -18,8 +18,9 @@ router.get('/state', (req, res) => {
                 if (err) return res.status(200).json({ status: 'Unable to find user' });
                 if (user) {
                     return res.json({
-                        type: user.state,
-                        isAdmin: user.admin
+                        state: user.state,
+                        isAdmin: user.admin,
+                        isMentor: user.isMentor
                     })
                 } else {
                     return res.json({ status: 'Unable to find user' });

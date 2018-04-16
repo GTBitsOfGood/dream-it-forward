@@ -4,6 +4,7 @@ import * as api from '../Utils/api';
 import { Redirect } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
 import { Navbar } from '../Navbar/Navbar';
+import { Matching } from '../Matching/Matching';
 
 @inject('rootStore')
 @observer
@@ -13,9 +14,35 @@ export class Landing extends React.Component {
         this.dreamStore = this.props.rootStore.dreamStore
     }
 
+    async componentDidMount() {
+        await this.dreamStore.fetchState()
+    }
+
     render() {
         if (!this.dreamStore.token) {
             return <Redirect to='/' />
+        }
+        if (this.dreamStore.state === 1) {
+            return (
+                <div className="highlight-clean">
+                    <Navbar store={this.dreamStore} {...this.props} />
+                    <div className="container">
+                        <div className="intro">
+                            <h2 className="text-center">Dream It Forward</h2>
+                            <h4 className="text-center">Thanks for Applying!</h4>
+                            <br />
+                            <p className="text-center"><img src='https://cdn1.iconfinder.com/data/icons/interface-elements/32/accept-circle-512.png' height={200} /></p>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+        if (this.dreamStore.admin) {
+            return (
+                <div className="highlight-clean">
+                    <Matching />
+                </div>
+            )
         }
         return (
             <div className="highlight-clean">

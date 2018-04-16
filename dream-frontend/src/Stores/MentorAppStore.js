@@ -18,7 +18,7 @@ export class MentorAppStore {
             tuesday: false,
             wednesday: false,
             thursday: false,
-            friday: false, 
+            friday: false,
             saturday: false,
             sunday: false
         },
@@ -35,7 +35,7 @@ export class MentorAppStore {
         position: {
             volunteer: false,
             fundraisingAndEvents: false,
-            outreach:false,
+            outreach: false,
             mentor: false,
             fundraisingCommittee: false,
             outreachCommittee: false,
@@ -44,18 +44,25 @@ export class MentorAppStore {
         }
     }
 
+    @observable applied = false
+
+    constructor(rootStore) {
+        this.rootStore = rootStore
+        this.BASE = 'http://localhost:8080'
+    }
+
     @action updateProperty(event) {
-      this.data[event.target.name] = event.target.value
+        this.data[event.target.name] = event.target.value
     }
 
     @action radioChanged(event) {
-      if (event.target.checked) {
-        this.data[event.target.name] = event.target.value
-      }
+        if (event.target.checked) {
+            this.data[event.target.name] = event.target.value
+        }
     }
 
     @action checkBoxChanged(event) {
-      this.data[event.target.name] = event.target.checked
+        this.data[event.target.name] = event.target.checked
     }
 
     @action checkDaysChanged(event) {
@@ -70,16 +77,16 @@ export class MentorAppStore {
         this.data.position[event.target.name] = event.target.checked
     }
 
-    onSubmit() {
+    async onSubmit() {
         let canSubmit = true;
         for (let property in this.data) {
             if (this.data.hasOwnProperty(property)) {
-                if (typeof(this.data[property]) !== "boolean" && this.data[property].length < 1) {
+                if (typeof (this.data[property]) !== "boolean" && this.data[property].length < 1) {
                     window.toastr.error('Please fill in all required fields')
                     console.log(property);
                     return;
                 }
-                if (typeof(this.data[property]) === "boolean" && !this.data[property]) {
+                if (typeof (this.data[property]) === "boolean" && !this.data[property]) {
                     window.toastr.error('Please fill in all required fields')
                     console.log(property);
                     return;
@@ -125,14 +132,24 @@ export class MentorAppStore {
             console.log("positions error");
             return;
         }
-        console.log(this.data);
+        // console.log(this.data);
         window.toastr.success('Thanks for submitting!')
-        // do backend stuff
+        const res = await fetch(this.BASE + '/api/mentor/apply', {
+            method: 'POST',
+            body: JSON.stringify({ mentorApp: this.data, token: this.rootStore.dreamStore.token }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const resp = await res.json();
+        console.log(resp)
+        this.applied = true;
     }
 
     validateEmail(email) {
-      const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(String(email).toLowerCase());
+        const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
     }
 }
 
