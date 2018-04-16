@@ -1,5 +1,5 @@
 .mentee-application {
-    padding: 80px 0;
+    padding: 0;
 }
 
 .mentee-application form {
@@ -94,4 +94,8 @@
 
 .mentee-application .radio-inline {
     margin-right: 10px;
+}
+
+.mentee-application .checkbox-inline {
+    margin-left: 0px;
 }

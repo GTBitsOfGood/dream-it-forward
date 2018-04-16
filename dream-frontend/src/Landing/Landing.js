@@ -3,6 +3,7 @@ import './Highlight-Clean.css';
 import * as api from '../Utils/api';
 import { Redirect } from 'react-router-dom';
 import { observer, inject } from 'mobx-react';
+import { Navbar } from '../Navbar/Navbar';
 
 @inject('rootStore')
 @observer
@@ -18,7 +19,7 @@ export class Landing extends React.Component {
         }
         return (
             <div className="highlight-clean">
-                <button onClick={() => this.dreamStore.onLogout()} style={{ marginLeft: '90%', marginBottom: 20 }} className="btn btn-warning" type="button">Logout</button>
+                <Navbar store={this.dreamStore} {...this.props} />
                 <div className="container">
                     <div className="intro">
                         <h2 className="text-center">Dream It Forward</h2>
