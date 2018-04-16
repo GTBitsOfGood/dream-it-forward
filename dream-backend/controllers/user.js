@@ -9,7 +9,6 @@ router.get('/state', (req, res) => {
     if (!req.body) {
         return res.status(400).json({ status: 'invalid body' });
     }
-
     jwt.verify(req.query.token, process.env.SECRET, function (err, decoded) {
         if (err) return res.json({ status: 'invalid' });
         else {
@@ -28,9 +27,58 @@ router.get('/state', (req, res) => {
             });
         }
     });
+});
 
+router.get('/mentees', (req, res) => {
+    if (!req.body) {
+        return res.status(400).json({ status: 'invalid body' });
+    }
+    jwt.verify(req.query.token, process.env.SECRET, function (err, decoded) {
+        if (err) return res.json({ status: 'invalid' });
+        else {
+            var query = User.where({ username: decoded.username });
+            query.findOne(function (err, user) {
+                if (err) return res.json({ status: 'Unable to find user' });
+                if (user && user.admin) {
+                    let allMentees = User.where({ admin: false, state: 1, isMentor: false });
+                    allMentees.find(function (err, users) {
+                        if (err) res.json({ status: 'failed' });
+                        return res.json({
+                            mentees: users
+                        })
+                    })
+                } else {
+                    return res.json({ status: 'Unable to find user' });
+                }
+            });
+        }
+    });
+});
 
-
+router.get('/mentors', (req, res) => {
+    if (!req.body) {
+        return res.status(400).json({ status: 'invalid body' });
+    }
+    jwt.verify(req.query.token, process.env.SECRET, function (err, decoded) {
+        if (err) return res.json({ status: 'invalid' });
+        else {
+            var query = User.where({ username: decoded.username });
+            query.findOne(function (err, user) {
+                if (err) return res.json({ status: 'Unable to find user' });
+                if (user && user.admin) {
+                    let allMentors = User.where({ admin: false, state: 1, isMentor: true });
+                    allMentors.find(function (err, users) {
+                        if (err) res.json({ status: 'failed' });
+                        return res.json({
+                            mentors: users
+                        })
+                    })
+                } else {
+                    return res.json({ status: 'Unable to find user' });
+                }
+            });
+        }
+    });
 });
 
 module.exports = router;
