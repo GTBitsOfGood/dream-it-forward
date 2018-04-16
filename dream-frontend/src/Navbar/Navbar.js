@@ -15,14 +15,14 @@ export class Navbar extends Component {
 
     render() {
         return (
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header"><a class="navbar-brand" href="/landing">Dream It Forward</a><button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+            <nav className="navbar navbar-default">
+                <div className="container-fluid">
+                    <div className="navbar-header"><a className="navbar-brand" href="/landing">Dream It Forward</a><button className="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span className="sr-only">Toggle navigation</span><span className="icon-bar"></span><span className="icon-bar"></span><span className="icon-bar"></span></button></div>
                     <div
-                        class="collapse navbar-collapse" id="navcol-1">
-                        <ul class="nav navbar-nav navbar-right">
+                        className="collapse navbar-collapse" id="navcol-1">
+                        <ul className="nav navbar-nav navbar-right">
                             <li role="presentation"><a href="/matching">Matching</a></li>
-                            <li role="presentation"><button type="button" class="btn btn-default navbar-btn" onClick={() => this.dreamStore.onLogout()}>Logout</button></li>
+                            <li role="presentation"><button type="button" className="btn btn-default navbar-btn" onClick={() => this.dreamStore.onLogout()}>Logout</button></li>
                         </ul>
                     </div>
                 </div>

@@ -4,10 +4,13 @@ var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
     // is an admin?
-    admin: Boolean,
+    admin: { type: Boolean, required: true, default: false },
 
     // mentor/mentee?
+    state: { type: Number, required: true, default: 0 },
     isMentor: Boolean,
+    menteeApp: { type: String },
+    mentorApp: { type: String },
 
     // login info
     username: { type: String, required: true, unique: true },
