@@ -19,7 +19,8 @@ router.get('/state', (req, res) => {
                     return res.json({
                         state: user.state,
                         isAdmin: user.admin,
-                        isMentor: user.isMentor
+                        isMentor: user.isMentor,
+                        relations: user.relations
                     })
                 } else {
                     return res.json({ status: 'Unable to find user' });
@@ -40,7 +41,7 @@ router.get('/mentees', (req, res) => {
             query.findOne(function (err, user) {
                 if (err) return res.json({ status: 'Unable to find user' });
                 if (user && user.admin) {
-                    let allMentees = User.where({ admin: false, state: 1, isMentor: false });
+                    let allMentees = User.where({ admin: false, state: { $gt: 0 }, isMentor: false });
                     allMentees.find(function (err, users) {
                         if (err) res.json({ status: 'failed' });
                         return res.json({
@@ -66,7 +67,7 @@ router.get('/mentors', (req, res) => {
             query.findOne(function (err, user) {
                 if (err) return res.json({ status: 'Unable to find user' });
                 if (user && user.admin) {
-                    let allMentors = User.where({ admin: false, state: 1, isMentor: true });
+                    let allMentors = User.where({ admin: false, state: { $gt: 0 }, isMentor: true });
                     allMentors.find(function (err, users) {
                         if (err) res.json({ status: 'failed' });
                         return res.json({

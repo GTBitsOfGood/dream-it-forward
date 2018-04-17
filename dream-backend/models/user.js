@@ -3,27 +3,31 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({
-    // is an admin?
-    admin: { type: Boolean, required: true, default: false },
+  // is an admin?
+  admin: { type: Boolean, default: false },
 
-    // mentor/mentee?
-    state: { type: Number, required: true, default: 0 },
-    isMentor: { type: Boolean, required: true, default: false },
-    menteeApp: { type: String },
-    mentorApp: { type: String },
+  // mentor/mentee?
+  state: { type: Number, default: 0 },
+  isMentor: { type: Boolean, default: false },
+  menteeApp: { type: String },
+  mentorApp: { type: String },
 
-    // login info
-    username: { type: String, required: true, unique: true },
-    password: { type: String, required: true },
+  // login info
+  username: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
 
-    // user relations in this system
-    relations: { type: String, default: '[]' },
-    
-    created_at: Date,
-    updated_at: Date
+  // user relations in this system
+  relations: { type: String, default: '[]' },
+
+  meta: {
+    email: { type: String, unique: true, trim: true },
+  },
+
+  created_at: Date,
+  updated_at: Date
 });
 
-userSchema.pre('save', function(next) {
+userSchema.pre('save', function (next) {
   // get the current date
   var currentDate = new Date();
   // if created_at doesn't exist, add to that field

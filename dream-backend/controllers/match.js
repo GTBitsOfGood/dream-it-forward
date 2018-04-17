@@ -38,6 +38,7 @@ router.put('/', (req, res) => {
                                     let findMentee = User.where({ username: mentees[i].username });
                                     let menteeDoc = await findMentee.findOne();
                                     menteeDoc.relations = JSON.stringify(mentor);
+                                    menteeDoc.state = 2;
                                     await menteeDoc.save();
                                     return res.status(200).json({ status: 'success' });
                                 }

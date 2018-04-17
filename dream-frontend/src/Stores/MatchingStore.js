@@ -18,6 +18,8 @@ export class MatchingStore {
     }
 
     @action async match(e) {
+        console.log(this.mentorSelected)
+        console.log(this.menteeSelected)
         const res = await fetch(this.BASE + '/api/match', {
             method: 'PUT',
             body: JSON.stringify({
@@ -34,6 +36,8 @@ export class MatchingStore {
         const resp = await res.json();
         console.log(resp)
         this.data.showMatchingModal = false;
+        await this.fetchMentees();
+        await this.fetchMentors();
     }
 
     @action async fetchMentees() {
@@ -81,7 +85,7 @@ export class MatchingStore {
     }
 
     @action handleOpenMatchingModal(event) {
-        this.mentorSelected = event.target.name;
+        this.menteeSelected = event.target.name;
         this.data.showMatchingModal = true;
     }
 

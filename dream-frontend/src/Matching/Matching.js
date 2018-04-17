@@ -41,7 +41,7 @@ export class Matching extends Component {
       }
       return (
         <tr key={index}>
-          <td className="vert-aligned">{JSON.parse(mentee.menteeApp).name}</td>
+          <td style={{ fontSize: '1.2em', color: 'black' }} className="vert-aligned">{JSON.parse(mentee.menteeApp).name}</td>
           <td className="vert-aligned">
             {relations}
           </td>
@@ -54,12 +54,12 @@ export class Matching extends Component {
       let relations = JSON.parse(mentor.relations);
       if (relations) {
         relations = _.map(relations, (rel, index) => {
-          return <span key={index} className="badge" style={{ padding: 9 }}>{JSON.parse(rel.menteeApp).name}</span>
+          if (rel) return <span key={index} className="badge" style={{ padding: 9 }}>{JSON.parse(rel.menteeApp).name}</span>
         })
       }
       return (
         <tr key={index}>
-          <td className="vert-aligned">{JSON.parse(mentor.mentorApp).name}</td>
+          <td style={{ fontSize: '1.2em', color: 'black' }} className="vert-aligned">{JSON.parse(mentor.mentorApp).name}</td>
           <td className="vert-aligned">
             {relations}
           </td>
@@ -79,12 +79,12 @@ export class Matching extends Component {
         <Navbar store={this.dreamStore} {...this.props} />
         <div className="container">
           <ReactModal isOpen={this.matchingStore.data.showMenteeModal} contentLabel="Mentee Modal">
-            <button onClick={(e) => this.matchingStore.handleCloseMenteeModal(e)} className="btn btn-primary" type="button">Close Modal</button>
             <MenteeModal />
+            <button onClick={(e) => this.matchingStore.handleCloseMenteeModal(e)} className="btn btn-primary" type="button">Close Modal</button>
           </ReactModal>
           <ReactModal isOpen={this.matchingStore.data.showMentorModal} contentLabel="Mentor Modal">
-            <button onClick={(e) => this.matchingStore.handleCloseMentorModal(e)} className="btn btn-primary" type="button">Close Modal</button>
             <MentorModal />
+            <button onClick={(e) => this.matchingStore.handleCloseMentorModal(e)} className="btn btn-primary" type="button">Close Modal</button>
           </ReactModal>
           <ReactModal isOpen={this.matchingStore.data.showMatchingModal} contentLabel="Matching Modal">
             <div style={{ marginTop: 10 }} className="list-group">
@@ -105,8 +105,8 @@ export class Matching extends Component {
                     <table>
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Mentor</th>
+                          <th style={{ color: 'red' }}>Name</th>
+                          <th style={{ color: 'red' }}>Mentor</th>
                           <th></th>
                           <th></th>
                         </tr>
@@ -128,8 +128,8 @@ export class Matching extends Component {
                     <table>
                       <thead>
                         <tr>
-                          <th>Name</th>
-                          <th>Mentees</th>
+                          <th style={{ color: 'red' }}>Name</th>
+                          <th style={{ color: 'red' }}>Mentees</th>
                           <th></th>
                         </tr>
                       </thead>
