@@ -9,21 +9,43 @@ router.put('/', (req, res) => {
     if (!req.body) {
         return res.status(400).json({ status: 'invalid body' });
     }
+    // both in array format
     let mentor = req.body.mentor;
-    let mentee = req.body.mentee;
+    let mentees = req.body.mentees;
+    let replace = req.body.replace;
     jwt.verify(req.body.token, process.env.SECRET, function (err, decoded) {
         if (err) return res.json({ status: 'invalid' });
         else {
             var query = User.where({ username: decoded.username });
-            query.findOne(function (err, user) {
+            query.findOne(async function (err, user) {
                 if (err) return res.json({ status: 'Unable to find user' });
                 if (user && user.admin) {
-                    let allMentors = User.where({ admin: false, state: 1, isMentor: true });
-                    allMentors.find(function (err, users) {
+                    let findMentor = User.where({ username: mentor[0].username });
+                    findMentor.findOne(function (err, mentorDoc) {
                         if (err) res.json({ status: 'failed' });
-                        return res.json({
-                            mentors: users
-                        })
+                        if (!mentorDoc.relations) mentorDoc.relations = '[]'
+                        if (!replace) {
+                            mentorDoc.relations = JSON.stringify(JSON.parse(mentorDoc.relations).splice().concat(mentees));
+                        } else {
+                            mentorDoc.relations = JSON.stringify(mentees);
+                        }
+                        mentorDoc.save(async (err) => {
+                            if (err) {
+                                return res.status(200).json({ status: 'failed' });
+                            }
+                            try {
+                                for (var i = 0; i < mentees.length; i++) {
+                                    let findMentee = User.where({ username: mentees[i].username });
+                                    let menteeDoc = await findMentee.findOne();
+                                    menteeDoc.relations = JSON.stringify(mentor);
+                                    await menteeDoc.save();
+                                    return res.status(200).json({ status: 'success' });
+                                }
+                            } catch (e) {
+                                console.log(e)
+                                return res.status(200).json({ status: 'failed' });
+                            }
+                        });
                     })
                 } else {
                     return res.json({ status: 'Unable to find user' });

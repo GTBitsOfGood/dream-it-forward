@@ -26,13 +26,15 @@ export class MentorModal extends Component {
         if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
+        let mentor = JSON.parse(this.mentorStore.mentors[this.mentorStore.mentorSelected].mentorApp);
+        console.log(mentor)
         return (
             <div className="mentor-modal">
                 <div className="container">
                     <div className="well">
                         <h1>Mentor Information </h1>
                         <div >
-                            Name: 
+                            Name: <b>{mentor.name}</b>
                         </div>
                         <div >
                             Email: 

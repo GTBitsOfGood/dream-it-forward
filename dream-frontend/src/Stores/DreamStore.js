@@ -6,11 +6,12 @@ export class DreamStore {
   @observable passConfirm = ''
   @observable state = ''
   @observable admin = ''
-  @observable token = localStorage.getItem('token')
+  @observable token = ''
 
   constructor(rootStore) {
     this.rootStore = rootStore
     this.BASE = 'http://localhost:8080'
+    this.token = localStorage.getItem('token')
   }
 
   @action onLogout() {

@@ -26,19 +26,21 @@ export class MenteeModal extends Component {
         if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
+        let mentee = JSON.parse(this.menteeStore.mentees[this.menteeStore.menteeSelected].menteeApp);
+        console.log(mentee)
         return (
             <div className="mentee-modal">
                 <div className="container">
                     <div className="well">
                         <h1>Mentee Information </h1>
                         <div >
-                            Email: 
+                            Email: <b>{mentee.email}</b>
                         </div>
                         <div >
-                            Registered Program: 
+                            Registered Program: {mentee.program}
                         </div>
                         <div >
-                            Name: 
+                            Name: {mentee.name}
                         </div>
                         <div >
                             Address: 

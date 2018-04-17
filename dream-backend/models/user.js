@@ -17,7 +17,7 @@ var userSchema = new Schema({
     password: { type: String, required: true },
 
     // user relations in this system
-    relations: [{type: String}],
+    relations: { type: String, default: '[]' },
     
     created_at: Date,
     updated_at: Date

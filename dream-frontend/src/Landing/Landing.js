@@ -15,6 +15,10 @@ export class Landing extends React.Component {
     }
 
     async componentDidMount() {
+        const data = await api.verifyToken(this.dreamStore.token)
+        if (!data || data.status !== 'valid') {
+            this.dreamStore.token = ''
+        }
         await this.dreamStore.fetchState()
     }
 
