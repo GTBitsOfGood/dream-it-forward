@@ -27,9 +27,6 @@ export class MenteeApplication extends Component {
         if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
-        if (this.menteeStore.applied) {
-            return <Redirect to='/landing' />
-        }
         return (
             <div className="mentee-application">
                 <Navbar store={this.dreamStore} {...this.props}/>

@@ -35,13 +35,6 @@ export class MenteeAppStore {
     permission: false
   }
 
-  @observable applied = false
-
-  constructor (rootStore) {
-    this.rootStore = rootStore
-    this.BASE = 'http://localhost:8080'
-  }
-
   @action updateProperty(event) {
     this.data[event.target.name] = event.target.value
   }
@@ -56,12 +49,12 @@ export class MenteeAppStore {
     this.data[event.target.name] = event.target.checked
   }
 
-  async onSubmit() {
+  onSubmit() {
     let notRequired = ["numChildren", "parentEmail", "parentAddress", "tShirtSize", "allergies"];
     for (let property in this.data) {
       if (this.data.hasOwnProperty(property)) {
         if (!(notRequired.includes(property))) {
-          if (typeof (this.data[property]) === "boolean") {
+          if (typeof(this.data[property]) === "boolean") {
             if (!(this.data[property])) {
               console.log(property);
               window.toastr.error('Please fill in all required fields')
@@ -78,7 +71,7 @@ export class MenteeAppStore {
               window.toastr.error('Please provide a valid email')
               return;
             }
-
+            
           }
         } else {
           if (this.data[property].length > 0) {
@@ -93,19 +86,9 @@ export class MenteeAppStore {
         }
       }
     }
-    // console.log(this.data);
+    console.log(this.data);
     window.toastr.success('Thanks for submitting!')
-    const res = await fetch(this.BASE + '/api/mentee/apply', {
-      method: 'POST',
-      body: JSON.stringify({ menteeApp: this.data, token: this.rootStore.dreamStore.token }),
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
-    const resp = await res.json();
-    console.log(resp)
-    this.applied = true;
+    // do backend stuff
   }
 
   validateEmail(email) {
