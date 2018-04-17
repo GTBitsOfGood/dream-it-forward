@@ -26,108 +26,106 @@ export class MenteeModal extends Component {
         if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
-        let mentee = JSON.parse(this.menteeStore.mentees[this.menteeStore.menteeSelected].menteeApp);
-        console.log(mentee)
         return (
             <div className="mentee-modal">
                 <div className="container">
                     <div className="well">
                         <h1>Mentee Information </h1>
                         <div >
-                            Email: <b>{mentee.email}</b>
+                            Email: 
                         </div>
                         <div >
-                            Registered Program: <b>{mentee.program}</b>
+                            Registered Program: 
                         </div>
                         <div >
-                            Name: <b>{mentee.name}</b>
+                            Name: 
                         </div>
                         <div >
-                            Address: <b>{mentee.address}</b>
+                            Address: 
                         </div>
                         <div >
-                            Date of Birth: <b>{mentee.dob}</b>
+                            Date of Birth: 
                         </div>
                         <div >
-                            Age: <b>{mentee.age}</b>
+                            Age: 
                         </div>
                         <div >
-                            School and City: <b>{mentee.school}</b>
+                            School and City: 
                         </div>
                         <div >
-                            Grade Level: <b>{mentee.grade}</b>
+                            Grade Level: 
                         </div>
                         <div >
-                            Do you have more than 1 Dreamer participating in any program? <b>{mentee.additionalDreamers}</b>
+                            Do you have more than 1 Dreamer participating in any program? 
                         </div>
                         <div >
-                            How many children do you have? (For Dream Women's Only) club: <b>{mentee.numChildren}</b>
+                            How many children do you have? (For Dream Women's Only) club:
                         </div>
                         <h1>Parent/Guardian Information</h1>
                         <div>
-                            Parent Name: <b>{mentee.parentName}</b>
+                            Parent Name:
                         </div>
                         <div >
-                            Parent Relationship: <b>{mentee.parentRelation}</b>
+                            Parent Relationship: 
                         </div>
                         <div >
-                            Parent Phone: <b>{mentee.parentPhone}</b>
+                            Parent Phone: 
                         </div>
                         <div >
-                            Parent Email: <b>{mentee.parentEmail}</b>
+                            Parent Email: 
                         </div>
                         <div >
-                            Parent Address: <b>{mentee.parentAddress}</b>
+                            Parent Address: 
                         </div>
                         <div >
-                            Emergency Contact Name: <b>{mentee.emergencyName}</b>
+                            Emergency Contact Name: 
                         </div>
                         <div >
-                            Emergency Contact Relationship: <b>{mentee.emergencyRelation}</b>
+                            Emergency Contact Relationship: 
                         </div>
                         <div >
-                            Emergency Contact Phone: <b>{mentee.emergencyPhone}</b>
+                            Emergency Contact Phone: 
                         </div>
                         <div >
-                            Persons Authorized to Pick Up Dreamer: <b>{mentee.personsToPickUp}</b>
+                            Persons Authorized to Pick Up Dreamer: 
                         </div>
                         <h1>Medical Information</h1>
                         <div >
-                            Dreamer's Primary Care Doctor: <b>{mentee.doctor}</b>
+                            Dreamer's Primary Care Doctor: 
                         </div>
                         <div >
-                            Doctor's Phone: <b>{mentee.doctorPhone}</b>
+                            Doctor's Phone: 
                         </div>
                         <div >
-                            Doctor's Address: <b>{mentee.doctorAddress}</b>
+                            Doctor's Address: 
                         </div>
                         <div >
-                            Does the Dreamer have any allergies, chronic illness, or medical conditions either physical, behavioral, mental? <b>{mentee.allergies}</b> 
+                            Does the Dreamer have any allergies, chronic illness, or medical conditions either physical, behavioral, mental?: 
                         </div>
                         <h1>Additional Information</h1>
                         <div >
-                            How did you hear about us? <b>{mentee.hear}</b>
+                            How did you hear about us? 
                         </div>
                         <div >
-                            Shirt Size: <b>{mentee.tShirtSize}</b>
+                            Shirt Size: 
                         </div>
                         <div >
-                            Registration Fee Agreed: <b>{mentee.membershipFee}</b>
+                            Registration Fee Agreed: 
                         </div>
                         <div >
-                            Additional Fees Agreed: <b>{mentee.extraMoney}</b>
+                            Additional Fees Agreed: 
                         </div>
                         <div >
-                            Tuition Agreed: <b>{mentee.tuition}</b>
+                            Tuition Agreed: 
                         </div>
                         <div >
-                            Release of Liability Agreed: <b>{mentee.liability}</b>
+                            Release of Liability Agreed: 
                         </div>
                         <div >
-                            Photo Release Agreed: <b>{mentee.photoRelease}</b>
+                            Photo Release Agreed: 
                         </div>
                         <div >
-                            Permission Granted: <b>{mentee.permission}</b>
+                            Permission Granted: 
                         </div>
                     </div>
                 </div>

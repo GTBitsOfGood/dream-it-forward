@@ -1,7 +1,3 @@
-.navbar-btn {
-    margin-top: 4em;
-}
-
-.illustration {
-    max-width: 200px;
+.navbar .navbar-default {
+    background-color: #4d97e0;
 }

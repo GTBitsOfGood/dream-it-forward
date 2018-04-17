@@ -26,69 +26,67 @@ export class MentorModal extends Component {
         if (!this.dreamStore.token) {
             return <Redirect to='/' />
         }
-        let mentor = JSON.parse(this.mentorStore.mentors[this.mentorStore.mentorSelected].mentorApp);
-        console.log(mentor)
         return (
             <div className="mentor-modal">
                 <div className="container">
                     <div className="well">
                         <h1>Mentor Information </h1>
                         <div >
-                            Name: <b>{mentor.name}</b>
+                            Name: 
                         </div>
                         <div >
-                            Email: <b>{mentor.email}</b>
+                            Email: 
                         </div>
                         <div >
-                            Phone: <b>{mentor.phone}</b>
+                            Phone: 
                         </div>
                         <div >
-                            Gender: <b>{mentor.gender}</b>
+                            Gender: 
                         </div>
                         <div >
-                            Date of Birth: <b>{mentor.dob}</b>
+                            Date of Birth: 
                         </div>
                         <div >
-                            City/State of Residence: <b>{mentor.cityState}</b>
+                            City/State of Residence: 
                         </div>
                         <div >
-                            Employer: <b>{mentor.employer}</b>
+                            Employer: 
                         </div>
                         <div >
-                            Work Phone: <b>{mentor.workPhone}</b>
+                            Work Phone: 
                         </div>
                         <div >
-                            Strengths: <b>{mentor.strengths}</b>
+                            Strengths:  
                         </div>
                         <div>
-                            Highest Level of Education Attained: <b>{mentor.education}</b>
+                            Highest Level of Education Attained: 
                         </div>
                         <div >
-                            Mentee Grade Level Preferred: <b>{mentor.gradeLevel}</b>
+                            Mentee Grade Level Preferred:
                         </div>
                         <div >
-                            Days of Week Availability: <b>{JSON.stringify(mentor.days)}</b>
+                            Days of Week Availability: 
                         </div>
                         <div >
-                            Time of Day Availability: <b>{JSON.stringify(mentor.times)}</b>
+                            Time of Day Availability: 
                         </div>
                         <div >
-                            Time Commitment Agreement: <b>{mentor.timeCommitment}</b>
+                            Time Commitment Agreement: 
                         </div>
                         <div >
-                            Training Agreement: <b>{mentor.training}</b>
+                            Training Agreement: 
                         </div>
                         <div >
-                            Felonies in Last 10 Years: <b>{mentor.felony}</b>
+                            Felonies in Last 10 Years: 
                         </div>
                         <div >
-                            Under Indictment: <b>{mentor.indictment}</b>
+                            Under Indictment: 
                         </div>
                         <div >
-                            Background Check Agreement: <b>{mentor.backgroundCheck}</b>
+                            Background Check Agreement: 
                         </div>
                         <div >
-                            Positions of Interest: <b>{JSON.stringify(mentor.position)}</b>
+                            Positions of Interest: 
                         </div>
                     </div>
                 </div>
