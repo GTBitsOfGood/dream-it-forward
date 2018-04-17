@@ -17,6 +17,7 @@ router.post('/', (req, res) => {
             username: req.body.username,
             password: hash,
             admin: false,
+            state: 0,
             meta : {
                 email: req.body.username
             }

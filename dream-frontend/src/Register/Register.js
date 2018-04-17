@@ -29,6 +29,7 @@ export class Register extends React.Component {
                     window.toastr.success('Account created')
                     this.props.history.push('/')
                 } else {
+                    console.log(data)
                     window.toastr.error('Cannot create account')
                 }
             }

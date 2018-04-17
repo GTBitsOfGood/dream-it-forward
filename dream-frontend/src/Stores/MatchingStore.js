@@ -9,9 +9,65 @@ export class MatchingStore {
     }
     @observable mentees = []
     @observable mentors = []
-    @observable selected = []
-    
+    @observable mentorSelected = ''
+    @observable menteeSelected = ''
+
+    constructor(rootStore) {
+        this.rootStore = rootStore;
+        this.BASE = 'http://localhost:8080'
+    }
+
+    @action async match(e) {
+        console.log(this.mentorSelected)
+        console.log(this.menteeSelected)
+        const res = await fetch(this.BASE + '/api/match', {
+            method: 'PUT',
+            body: JSON.stringify({
+                mentor: [this.mentors[this.mentorSelected]],
+                mentees: [this.mentees[this.menteeSelected]],
+                token: this.rootStore.dreamStore.token,
+                replace: false
+            }),
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const resp = await res.json();
+        console.log(resp)
+        this.data.showMatchingModal = false;
+        await this.fetchMentees();
+        await this.fetchMentors();
+    }
+
+    @action async fetchMentees() {
+        const res = await fetch(this.BASE + '/api/user/mentees?token=' + this.rootStore.dreamStore.token, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const resp = await res.json();
+        console.log(resp)
+        this.mentees = resp.mentees;
+    }
+
+    @action async fetchMentors() {
+        const res = await fetch(this.BASE + '/api/user/mentors?token=' + this.rootStore.dreamStore.token, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        });
+        const resp = await res.json();
+        console.log(resp)
+        this.mentors = resp.mentors;
+    }
+
     @action handleOpenMenteeModal(event) {
+        this.menteeSelected = event.target.name;
         this.data.showMenteeModal = true;
     }
 
@@ -20,6 +76,7 @@ export class MatchingStore {
     }
 
     @action handleOpenMentorModal(event) {
+        this.mentorSelected = event.target.name;
         this.data.showMentorModal = true;
     }
 
@@ -28,6 +85,7 @@ export class MatchingStore {
     }
 
     @action handleOpenMatchingModal(event) {
+        this.menteeSelected = event.target.name;
         this.data.showMatchingModal = true;
     }
 
