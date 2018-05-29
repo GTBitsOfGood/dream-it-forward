@@ -14,7 +14,9 @@ export class MatchingStore {
 
     constructor(rootStore) {
         this.rootStore = rootStore;
-        this.BASE = 'http://localhost:8080'
+        let temp = window.location.origin.split(":")
+        temp[2] = '8080'
+        this.BASE = temp.join(':')
     }
 
     @action async match(e) {
