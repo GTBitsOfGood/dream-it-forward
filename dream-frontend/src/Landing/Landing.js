@@ -28,8 +28,8 @@ export class Landing extends React.Component {
             return <Redirect to='/' />
         }
         if (this.dreamStore.state === 2 && this.dreamStore.relations) {
-            let name = JSON.parse(JSON.parse(this.dreamStore.relations)[0].mentorApp).name
-            let email = JSON.parse(JSON.parse(this.dreamStore.relations)[0].mentorApp).email
+            let name = this.dreamStore.relations[0].name
+            let email = this.dreamStore.relations[0].email
             return (
                 <div className="highlight-clean">
                     <Navbar store={this.dreamStore} {...this.props} />
@@ -51,11 +51,11 @@ export class Landing extends React.Component {
             );
         }
         if (this.dreamStore.isMentor && this.dreamStore.state === 1 && this.dreamStore.relations) {
-            let relations = JSON.parse(this.dreamStore.relations)
+            let relations = this.dreamStore.relations
             let people = _.map(relations, (rel, index) => {
                 if (!rel) return;
-                let name = JSON.parse(rel.menteeApp).name
-                let email = JSON.parse(rel.menteeApp).email
+                let name = rel.name
+                let email = rel.email
                 return (
                     <div key={index}>
                         <p style={{ color: 'black' }}>Name: {name}</p>

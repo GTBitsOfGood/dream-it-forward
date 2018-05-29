@@ -25,8 +25,7 @@ export class MatchingStore {
             body: JSON.stringify({
                 mentor: [this.mentors[this.mentorSelected]],
                 mentees: [this.mentees[this.menteeSelected]],
-                token: this.rootStore.dreamStore.token,
-                replace: false
+                token: this.rootStore.dreamStore.token
             }),
             headers: {
                 'Accept': 'application/json',
