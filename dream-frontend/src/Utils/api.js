@@ -1,4 +1,6 @@
-const BASE = 'http://localhost:8080'
+let temp = window.location.origin.split(":")
+temp[2] = '8080'
+const BASE = temp.join(':')
 
 export async function login(email, password) {
     const res = await fetch(BASE + '/api/login', {

@@ -5,55 +5,51 @@ const jwt = require('jsonwebtoken')
 
 const User = require('../models/user.js');
 
-router.put('/', (req, res) => {
+router.put('/', async (req, res) => {
     if (!req.body) {
         return res.status(400).json({ status: 'invalid body' });
     }
-    // both in array format
     let mentor = req.body.mentor;
     let mentees = req.body.mentees;
-    let replace = req.body.replace;
-    jwt.verify(req.body.token, process.env.SECRET, function (err, decoded) {
-        if (err) return res.json({ status: 'invalid' });
-        else {
-            var query = User.where({ username: decoded.username });
-            query.findOne(async function (err, user) {
-                if (err) return res.json({ status: 'Unable to find user' });
-                if (user && user.admin) {
-                    let findMentor = User.where({ username: mentor[0].username });
-                    findMentor.findOne(function (err, mentorDoc) {
-                        if (err) res.json({ status: 'failed' });
-                        if (!mentorDoc.relations) mentorDoc.relations = '[]'
-                        if (!replace) {
-                            mentorDoc.relations = JSON.stringify(JSON.parse(mentorDoc.relations).splice().concat(mentees));
-                        } else {
-                            mentorDoc.relations = JSON.stringify(mentees);
+    try {
+        let decoded = await jwt.verify(req.body.token, process.env.SECRET);
+        let user = await User.where({ username: decoded.username }).findOne();
+        if (user && user.admin) {
+            let mentorDoc = await User.where({ username: mentor[0].username }).findOne();
+            let menteeDoc = await User.where({ username: mentees[0].username }).findOne();
+            if (!mentorDoc.relations) mentorDoc.relations = [];
+            if (!menteeDoc.relations) {
+                menteeDoc.relations = [];
+            } else {
+                if (menteeDoc.relations.length > 0) {
+                    let prevMentor = await User.where({ username: menteeDoc.relations[0].username }).findOne();
+                    for (var i = 0; i < prevMentor.relations.length; i++) {
+                        if (prevMentor.relations[i].username === mentees[0].username) {
+                            prevMentor.relations.splice(i, 1);
+                            break;
                         }
-                        mentorDoc.save(async (err) => {
-                            if (err) {
-                                return res.status(200).json({ status: 'failed' });
-                            }
-                            try {
-                                for (var i = 0; i < mentees.length; i++) {
-                                    let findMentee = User.where({ username: mentees[i].username });
-                                    let menteeDoc = await findMentee.findOne();
-                                    menteeDoc.relations = JSON.stringify(mentor);
-                                    menteeDoc.state = 2;
-                                    await menteeDoc.save();
-                                    return res.status(200).json({ status: 'success' });
-                                }
-                            } catch (e) {
-                                console.log(e)
-                                return res.status(200).json({ status: 'failed' });
-                            }
-                        });
-                    })
-                } else {
-                    return res.json({ status: 'Unable to find user' });
+                    }
+                    await prevMentor.save();
                 }
+            }
+            menteeDoc.relations = [{
+                username: mentor[0].username,
+                name: JSON.parse(mentorDoc.mentorApp).name,
+                email: JSON.parse(mentorDoc.mentorApp).email      
+            }];
+            await menteeDoc.save()
+            mentorDoc.relations.push({
+                username: mentees[0].username,
+                name: JSON.parse(menteeDoc.menteeApp).name,
+                email: JSON.parse(menteeDoc.menteeApp).email
             });
+            await mentorDoc.save()
+            return res.json({ status: 'success' });
         }
-    });
-});
+        return res.json({ status: 'failed' });
+    } catch (e) {
+        return res.json({ status: 'failed' });
+    }
+})
 
 module.exports = router;

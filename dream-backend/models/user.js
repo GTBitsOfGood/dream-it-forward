@@ -17,7 +17,7 @@ var userSchema = new Schema({
   password: { type: String, required: true },
 
   // user relations in this system
-  relations: { type: String, default: '[]' },
+  relations: { type: Array, default: [] },
 
   meta: {
     email: { type: String, unique: true, trim: true },

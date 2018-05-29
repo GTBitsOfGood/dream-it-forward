@@ -33,10 +33,10 @@ export class Matching extends Component {
       return <Redirect to='/' />
     }
     let mentees = _.map(this.matchingStore.mentees, (mentee, index) => {
-      let relations = JSON.parse(mentee.relations);
+      let relations = mentee.relations;
       if (relations) {
         relations = _.map(relations, (rel, index) => {
-          return <span key={index} className="badge" style={{ padding: 9 }}>{JSON.parse(rel.mentorApp).name}</span>
+          return <span key={index} className="badge" style={{ padding: 9 }}>{rel.name}</span>
         })
       }
       return (
@@ -51,10 +51,10 @@ export class Matching extends Component {
       )
     })
     let mentors = _.map(this.matchingStore.mentors, (mentor, index) => {
-      let relations = JSON.parse(mentor.relations);
+      let relations = mentor.relations;
       if (relations) {
         relations = _.map(relations, (rel, index) => {
-          if (rel) return <span key={index} className="badge" style={{ padding: 9 }}>{JSON.parse(rel.menteeApp).name}</span>
+          if (rel) return <span key={index} className="badge" style={{ padding: 9, marginRight: 10 }}>{rel.name}</span>
         })
       }
       return (
