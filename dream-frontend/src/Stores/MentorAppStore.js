@@ -49,7 +49,7 @@ export class MentorAppStore {
     constructor(rootStore) {
         this.rootStore = rootStore
         let temp = window.location.origin.split(":")
-        temp[2] = '8080'
+        temp[2] = '80'
         this.BASE = temp.join(':')
     }
 
