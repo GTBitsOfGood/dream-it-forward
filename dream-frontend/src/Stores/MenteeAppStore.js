@@ -39,9 +39,9 @@ export class MenteeAppStore {
 
   constructor (rootStore) {
     this.rootStore = rootStore
-    let temp = window.location.origin.split(":")
-    temp[1] = temp[1] + '/'
-    const BASE = temp.join(':')
+    // let temp = window.location.origin.split(":")
+    // temp[1] = temp[1] + '/'
+    // const BASE = temp.join(':')
   }
 
   @action updateProperty(event) {
