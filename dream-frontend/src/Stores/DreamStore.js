@@ -14,8 +14,8 @@ export class DreamStore {
   constructor(rootStore) {
     this.rootStore = rootStore
     let temp = window.location.origin.split(":")
-    temp[2] = '80'
-    this.BASE = temp.join(':')
+    temp[1] = temp[1] + '/'
+    const BASE = temp.join(':')
     this.token = localStorage.getItem('token')
   }
 
