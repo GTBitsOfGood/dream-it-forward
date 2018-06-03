@@ -1,6 +1,7 @@
 // let temp = window.location.origin.split(":")
 // temp[1] = temp[1] + '/'
 // const BASE = temp.join(':')
+const BASE = window.location.origin;
 
 export async function login(email, password) {
     const res = await fetch(BASE + '/api/login', {

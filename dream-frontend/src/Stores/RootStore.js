@@ -5,6 +5,7 @@ import MatchingStore from './MatchingStore'
 
 class RootStore {
   constructor () {
+    this.BASE = window.location.origin;
     this.dreamStore = new DreamStore(this)
     this.menteeAppStore = new MenteeAppStore(this)
     this.mentorAppStore = new MentorAppStore(this)
