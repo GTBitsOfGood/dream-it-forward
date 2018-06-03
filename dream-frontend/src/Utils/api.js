@@ -1,5 +1,5 @@
 let temp = window.location.origin.split(":")
-temp[2] = '80'
+temp[1] = temp[1] + '/'
 const BASE = temp.join(':')
 
 export async function login(email, password) {
